@@ -5,7 +5,7 @@
 
 class OpenAICompletionService {
   constructor() {
-    this.apiKey = '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';
+    this.apiKey = '';
     this.baseUrl = 'https://api.openai.com/v1/chat/completions';
     this.model = 'gpt-4o-mini'; // Cost-effective model that's great for structured text
     console.log('MindFlow: OpenAI Completion service initialized');
