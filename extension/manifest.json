@@ -17,7 +17,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["whisper-service.js", "mapping-engine.js", "mindflow-ui.js", "content-script.js"],
+      "js": ["whisper-service.js", "openai-completion-service.js", "mapping-engine.js", "mindflow-ui.js", "content-script.js"],
       "css": ["mindflow-ui.css"],
       "run_at": "document_end"
     }

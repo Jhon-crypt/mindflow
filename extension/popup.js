@@ -228,49 +228,110 @@ async function processRecording(audioBlob) {
 }
 
 /**
- * Process text with clinical mappings using enhanced mapping engine
+ * Process text using OpenAI completion for 245G compliance
  */
 async function processText() {
   const input = document.getElementById('inputText').value.trim();
+  const processBtn = document.getElementById('processBtn');
+  const outputText = document.getElementById('outputText');
+  const results = document.getElementById('results');
+  
   if (!input) {
     alert('Please enter some text first.');
     return;
   }
   
   try {
-    // Use the enhanced mapping engine
-    const mappingEngine = new MindFlowMappingEngine();
-    const formatted = await mappingEngine.processInput(input);
+    // Update button state
+    const originalText = processBtn.textContent;
+    processBtn.textContent = 'Enhancing with AI...';
+    processBtn.disabled = true;
     
-    // Show results
-    document.getElementById('outputText').textContent = formatted;
-    document.getElementById('results').classList.remove('hidden');
+    // Show processing state
+    outputText.textContent = 'Processing with OpenAI to ensure 245G compliance...\n\nThis may take a few seconds for the best results.';
+    results.classList.remove('hidden');
     
-    // Store for clipboard
-    window.lastOutput = formatted;
+    // Use OpenAI completion service for professional enhancement
+    const completionService = new OpenAICompletionService();
+    
+    if (!completionService.isConfigured()) {
+      throw new Error('OpenAI service not configured');
+    }
+    
+    // Process with validation and retry logic
+    const enhanced = await completionService.processWithValidation(input);
+    
+    // Validate the output
+    const validation = completionService.validate245GFormat(enhanced);
+    
+    // Show results with validation status
+    let displayText = enhanced;
+    if (!validation.isValid) {
+      displayText += `\n\n⚠️ Note: Some sections may need manual review. Missing: ${validation.missingSections.join(', ')}`;
+    } else {
+      displayText += '\n\n✅ All required 245G sections present and formatted correctly.';
+    }
+    
+    outputText.textContent = displayText;
+    
+    // Store for clipboard (without validation notes)
+    window.lastOutput = enhanced;
+    
+    // Update button state
+    processBtn.textContent = '✅ Enhanced!';
+    processBtn.style.background = '#059669';
+    
+    setTimeout(() => {
+      processBtn.textContent = originalText;
+      processBtn.style.background = '';
+      processBtn.disabled = false;
+    }, 3000);
     
   } catch (error) {
-    console.error('Processing error:', error);
+    console.error('MindFlow: Enhancement error:', error);
     
-    // Fallback to simple processing
-    const formatted = `SERVICE PROVIDED:
+    // Show error and fallback
+    outputText.textContent = `❌ Enhancement failed: ${error.message}\n\nUsing fallback processing...`;
+    
+    // Fallback to mapping engine
+    try {
+      const mappingEngine = new MindFlowMappingEngine();
+      const fallbackFormatted = await mappingEngine.processInput(input);
+      
+      setTimeout(() => {
+        outputText.textContent = fallbackFormatted + '\n\n⚠️ Generated using fallback processing due to API error.';
+        window.lastOutput = fallbackFormatted;
+      }, 2000);
+      
+    } catch (fallbackError) {
+      console.error('Fallback processing also failed:', fallbackError);
+      
+      // Final fallback - simple template
+      const simpleFormatted = `SERVICE PROVIDED:
 Provided 50-minute individual substance use disorder counseling session at ASAM Level 2.1 intensive outpatient program via in-person service.
 
 CLIENT RESPONSE:
-Client ${input}. Actively engaged in therapeutic discussion and demonstrated receptiveness to interventions.
+${input}. Client actively engaged in therapeutic discussion and demonstrated receptiveness to interventions.
 
 INTERVENTIONS:
-Implemented evidence-based therapeutic interventions addressing Dimension 3 (Emotional/Behavioral) and Dimension 5 (Relapse Potential). Utilized Cognitive Behavioral Therapy techniques.
+Implemented evidence-based therapeutic interventions addressing Dimension 3 (Emotional/Behavioral) and Dimension 5 (Relapse Potential). Utilized Cognitive Behavioral Therapy techniques and Motivational Interviewing.
 
 PROGRESS:
 Progress toward Goal #1 (maintain sobriety): Client demonstrating continued engagement in treatment with active participation in therapeutic interventions.
 
 PLAN:
-Continue weekly individual sessions at current ASAM level. Next session scheduled for [DATE].`;
+Continue weekly individual sessions at current ASAM level focusing on treatment goals. Next session scheduled for [DATE].`;
+      
+      setTimeout(() => {
+        outputText.textContent = simpleFormatted + '\n\n⚠️ Generated using basic template due to processing errors.';
+        window.lastOutput = simpleFormatted;
+      }, 2000);
+    }
     
-    document.getElementById('outputText').textContent = formatted;
-    document.getElementById('results').classList.remove('hidden');
-    window.lastOutput = formatted;
+    // Reset button
+    processBtn.textContent = 'Enhance to 245G Format';
+    processBtn.style.background = '';
+    processBtn.disabled = false;
   }
 }
 

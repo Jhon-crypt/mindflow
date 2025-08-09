@@ -338,15 +338,40 @@ class MindFlowUI {
    */
   async processTranscribedText(text) {
     try {
-      const result = await this.mappingEngine.processInput(text);
+      this.setState('processing');
+      
+      let enhancedText;
+      
+      // Try OpenAI completion service first for best results
+      try {
+        if (typeof OpenAICompletionService !== 'undefined') {
+          const completionService = new OpenAICompletionService();
+          
+          if (completionService.isConfigured()) {
+            console.log('MindFlow: Using OpenAI completion for professional enhancement');
+            enhancedText = await completionService.processWithValidation(text);
+          } else {
+            throw new Error('OpenAI service not configured');
+          }
+        } else {
+          throw new Error('OpenAI service not available');
+        }
+      } catch (completionError) {
+        console.log('MindFlow: OpenAI completion failed, falling back to mapping engine:', completionError.message);
+        
+        // Fallback to mapping engine
+        const result = await this.mappingEngine.processInput(text);
+        enhancedText = result.formattedNote || result;
+      }
+      
+      // Store results
       this.originalText = text;
-      this.enhancedText = result.formattedNote;
-      this.sections = result.sections;
+      this.enhancedText = enhancedText;
       
       this.setState('preview');
       
     } catch (error) {
-      console.error('Text processing error:', error);
+      console.error('MindFlow: Text processing error:', error);
       this.showError('Failed to enhance text. Please try manual input.');
       this.setState('dormant');
     }
