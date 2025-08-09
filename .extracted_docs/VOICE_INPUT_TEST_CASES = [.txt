@@ -1,0 +1,482 @@
+Voice Input Test Cases - Plain Text Version
+What These Test Cases Are For
+These are 10 real examples of what counselors might say during a session, and exactly what
+the system should turn their words into for a compliant 245G progress note.
+
+
+
+
+Test Case 1: Client with Anxiety Who Relapsed
+What the counselor says: "Client was really anxious today, maybe 8 out of 10. Said he used
+meth three days ago after fighting with his wife. We worked on breathing exercises and he
+seemed calmer by the end. He agreed to go to NA tonight and call his sponsor. Gave him the
+HALT worksheet to track his triggers."
+
+What the system should produce:
+
+SERVICE PROVIDED: Provided 50-minute individual substance use disorder counseling
+session at ASAM Level 2.1 intensive outpatient program via in-person service
+
+CLIENT RESPONSE: Client presented with significant anxiety symptoms, self-reporting severity
+at 8/10 on subjective scale. Disclosed methamphetamine use three days ago following marital
+conflict, stating 'I used meth three days ago after fighting with my wife.' Demonstrated
+receptiveness to interventions with observable decrease in anxiety symptoms by session
+conclusion. Expressed commitment to recovery by agreeing to attend NA meeting and contact
+sponsor.
+
+INTERVENTIONS: Implemented anxiety management techniques including diaphragmatic
+breathing exercises addressing Dimension 3 (Emotional/Behavioral). Utilized motivational
+interviewing to explore relapse circumstances and reinforce change talk. Addressed Dimension
+5 (Relapse Potential) through trigger identification using HALT (Hungry, Angry, Lonely, Tired)
+assessment framework. Provided psychoeducation on connection between emotional
+dysregulation and substance use. Assigned HALT worksheet for daily trigger monitoring.
+
+PROGRESS: Progress toward Goal #1 (maintain sobriety): Declined with reported relapse after
+12 days abstinent. Client demonstrated 3-day period of abstinence following use episode.
+Dimension 5 (Relapse Potential) risk remains at level 3 due to recent use. Positive indicator:
+client voluntarily disclosed use and expressed motivation for recovery. Successfully utilized
+taught breathing technique with reported anxiety reduction from 8/10 to 5/10 by session end.
+PLAN: Continue twice-weekly individual sessions focusing on relapse prevention and emotional
+regulation. Client committed to attend NA meeting tonight and contact sponsor within 24 hours.
+Will complete HALT trigger tracking worksheet daily before next session on [DATE]. Next
+session will process relapse using Marlatt's Relapse Prevention model and update safety plan.
+Consider increasing to ASAM 2.5 if another use episode occurs.
+
+
+
+
+Test Case 2: Depression but Staying Sober
+What the counselor says: "John seemed really down today, mood was like a 4. He's been
+sober for 30 days which is great. We talked about his job loss and how it's affecting his
+self-worth. Did some cognitive restructuring around his negative thoughts. He identified three
+negative thoughts and we challenged them. He's going to journal every morning and agreed to
+apply for two jobs this week."
+
+What the system should produce:
+
+SERVICE PROVIDED: Provided 50-minute individual psychotherapy session addressing
+co-occurring major depressive disorder and substance use disorder at ASAM Level 1.0
+outpatient treatment via in-person service
+
+CLIENT RESPONSE: Client presented with depressed affect, self-reporting mood at 4/10 on
+subjective scale. Acknowledged 30 consecutive days of sobriety with expressed pride in
+achievement. Discussed occupational stressor of recent job loss, stating it significantly impacts
+self-worth and identity. Actively engaged in cognitive restructuring exercise, successfully
+identifying three specific negative automatic thoughts. Demonstrated willingness to engage in
+behavioral activation by committing to job search activities.
+
+INTERVENTIONS: Implemented Cognitive Behavioral Therapy interventions targeting
+Dimension 3 (Emotional/Behavioral) with focus on mood symptoms. Facilitated cognitive
+restructuring exercise examining evidence for and against negative automatic thoughts related
+to self-worth. Utilized behavioral activation planning to address depressive symptoms through
+scheduled pleasant activities and job search tasks. Assigned mood and thought journal for daily
+completion. Reinforced connection between sustained sobriety and mood improvement.
+
+PROGRESS: Progress toward Goal #2 (reduce depressive symptoms): Maintained with PHQ-9
+score stable at 14 (moderate severity). Significant progress toward Goal #1 (maintain sobriety):
+30 consecutive days abstinent representing 100% increase from admission baseline. Dimension
+3 risk remains at level 2 due to persistent mood symptoms. Client successfully completed
+in-session cognitive restructuring exercise and identified thought distortions independently.
+
+PLAN: Continue weekly individual therapy sessions with focus on depression management
+while maintaining sobriety. Client will complete daily mood and thought journal utilizing provided
+template. Committed to submit two job applications before next session on [DATE]. Will
+introduce behavioral activation scheduling next session. Continue reinforcing recovery skills and
+celebrate 30-day milestone. Monitor for increased substance use risk if mood deteriorates.
+
+
+
+
+Test Case 3: Group Session
+What the counselor says: "Led relapse prevention group, 8 people attended. Topic was
+identifying triggers. Everyone participated except Mike who was quiet. Sarah shared about
+almost using last weekend but called her sponsor instead. Group gave her positive feedback.
+We practiced saying no to dealers and friends who use. Assigned everyone to map out their
+high risk situations for homework."
+
+What the system should produce:
+
+SERVICE PROVIDED: Facilitated 90-minute group therapy session focusing on relapse
+prevention skills at ASAM Level 2.1 intensive outpatient program with 8 participants via
+in-person service
+
+CLIENT RESPONSE: Group demonstrated active engagement with relapse prevention topic,
+with 7 of 8 members contributing to discussion. One member exhibited minimal participation
+through quiet presentation. Member Sarah disclosed near-use episode, reporting successful
+implementation of recovery support by contacting sponsor. Group provided supportive feedback
+reinforcing recovery-oriented behavior. All members participated in refusal skill role-play
+exercise with observable engagement.
+
+INTERVENTIONS: Facilitated psychoeducational group focusing on trigger identification
+addressing Dimension 5 (Relapse Potential). Implemented Marlatt's Relapse Prevention model
+including high-risk situation identification. Conducted refusal skills training through role-play
+exercises simulating drug dealer and peer pressure scenarios. Reinforced positive recovery
+behaviors through group processing of member's successful coping example. Assigned
+high-risk situation mapping worksheet for completion before next group session.
+
+PROGRESS: Group demonstrating collective progress in relapse prevention skill development.
+87.5% active participation rate (7 of 8 members). Members exhibited understanding of trigger
+concepts through appropriate examples shared. Successful utilization of support system
+reported by one member preventing potential relapse. Dimension 5 (Relapse Potential) being
+actively addressed through skill building. Group cohesion developing as evidenced by
+supportive peer feedback.
+
+PLAN: Continue twice-weekly group sessions per IOP schedule. Next session will review
+completed high-risk situation maps and develop individualized coping plans. Will address quiet
+member individually to assess barriers to participation. Continue reinforcing early recovery skills
+and peer support utilization. Members to complete trigger mapping homework and attend
+minimum one support meeting before next group on [DATE].
+Test Case 4: Crisis with Suicide Thoughts
+What the counselor says: "Emergency session with Jessica. She's having thoughts of suicide
+but no plan. Husband left her yesterday and she relapsed on alcohol. We did a safety plan and
+she contracted for safety. Called her AA sponsor during session. She agreed to stay with her
+sister tonight and come to IOP tomorrow. Will follow up by phone tonight at 8pm."
+
+What the system should produce:
+
+SERVICE PROVIDED: Provided 60-minute emergency individual crisis intervention session at
+ASAM Level 2.1 intensive outpatient program via in-person service
+
+CLIENT RESPONSE: Client presented in acute distress reporting suicidal ideation without plan
+or means following marital separation occurring yesterday. Disclosed alcohol relapse after
+previous 45 days sobriety. Engaged cooperatively in safety planning process and verbally
+contracted for safety. Demonstrated help-seeking behavior by agreeing to contact supports.
+Accepted increased support recommendations including temporary residence change and
+increased treatment intensity.
+
+INTERVENTIONS: Implemented crisis intervention protocol including comprehensive suicide
+risk assessment revealing ideation without plan, means, or intent. Developed detailed safety
+plan including coping strategies, support contacts, and environmental modifications. Facilitated
+immediate support activation by contacting AA sponsor during session with client consent.
+Addressed Dimension 3 (Emotional/Behavioral) acute risk and Dimension 6 (Recovery
+Environment) through temporary living arrangement. Scheduled follow-up contact for continued
+risk monitoring.
+
+PROGRESS: Goal #1 (maintain sobriety): Significant decline with reported alcohol relapse after
+45 days abstinent. Goal #3 (manage depression): Acute exacerbation requiring crisis
+intervention. Dimension 3 risk increased from 2 to 4 due to suicidal ideation. Dimension 5
+(Relapse Potential) risk increased to 4 following use episode. Positive indicators: accepting
+help, contracting for safety, agreeing to support recommendations.
+
+PLAN: Client will stay with sister tonight for increased supervision and support. Attend IOP
+tomorrow at 9:00 AM for continued stabilization. Counselor will conduct phone check-in tonight
+at 8:00 PM for safety reassessment. Consider psychiatric evaluation for medication adjustment
+within 48 hours. If suicidal ideation worsens or plan develops, client instructed to call 988 or
+present to emergency department. Increase individual sessions to twice weekly until stabilized.
+
+
+
+
+Test Case 5: Family Session
+What the counselor says: "Had family session with Tom and his wife Mary. She's frustrated
+about trust issues. Tom has 60 days clean and wants more freedom. We talked about rebuilding
+trust slowly and Mary expressed her fears about relapse. Set up some agreements about
+checking in and Tom agreed to continue transparency about his whereabouts. Mary will start
+going to Al-Anon."
+
+What the system should produce:
+
+SERVICE PROVIDED: Provided 50-minute family therapy session addressing substance use
+disorder impact on family system at ASAM Level 1.0 outpatient treatment via in-person service
+
+CLIENT RESPONSE: Client Tom presented with 60 days continuous sobriety, expressing desire
+for increased autonomy within relationship. Spouse Mary exhibited frustration regarding trust
+restoration and verbalized anxiety about potential relapse. Both parties engaged constructively
+in dialogue about relationship dynamics. Couple demonstrated willingness to establish mutual
+agreements regarding accountability and communication. Mary expressed readiness to seek
+personal support through Al-Anon participation.
+
+INTERVENTIONS: Facilitated family therapy session addressing Dimension 6 (Recovery
+Environment) focusing on relationship dynamics in early recovery. Provided psychoeducation
+about trust rebuilding as gradual process in recovery. Implemented communication skills training
+to improve couple's dialogue about recovery needs and concerns. Developed behavioral
+agreements including check-in protocols and transparency expectations. Provided referral and
+encouragement for family member to attend Al-Anon for personal support.
+
+PROGRESS: Progress toward Goal #4 (improve family relationships): Moderate improvement
+with couple engaging in productive dialogue and establishing agreements. Client maintaining 60
+consecutive days of verified sobriety supporting trust rebuilding process. Dimension 6 (Recovery
+Environment) risk decreasing from 3 to 2 with spouse engagement in treatment process. Family
+system demonstrating increased understanding of recovery process and mutual support needs.
+
+PLAN: Continue monthly family sessions to monitor relationship progress and adjust
+agreements as needed. Tom will maintain current recovery activities including daily check-ins
+with spouse about whereabouts and recovery status. Mary will attend first Al-Anon meeting
+before next session on [DATE]. Next family session will review effectiveness of established
+agreements and address any emerging concerns. Individual sessions with Tom will continue
+weekly focusing on maintaining sobriety while navigating relationship changes.
+
+
+
+
+Test Case 6: Client Stopped Taking Medication
+What the counselor says: "David admitted he stopped taking his Suboxone three days ago
+because he felt fine. He's having some cravings now but no use. We discussed importance of
+medication compliance and how Suboxone works. He agreed to restart today and I called Dr.
+Johnson's office to inform them. Set up a medication reminder app on his phone."
+
+What the system should produce:
+
+SERVICE PROVIDED: Provided 50-minute individual counseling session addressing
+medication-assisted treatment compliance at ASAM Level 1.0 outpatient treatment via in-person
+service
+
+CLIENT RESPONSE: Client disclosed discontinuation of Suboxone medication three days ago,
+stating he 'felt fine' without it. Reported experiencing cravings without medication but denied any
+substance use. Demonstrated receptiveness to psychoeducation about medication importance.
+Expressed willingness to resume medication immediately. Actively participated in setting up
+adherence strategies including smartphone reminder application.
+
+INTERVENTIONS: Provided psychoeducation regarding medication-assisted treatment
+including Suboxone mechanism of action and importance of consistent administration
+addressing Dimension 1 (Acute Intoxication/Withdrawal). Explored barriers to medication
+compliance and problem-solved adherence strategies. Coordinated care with prescribing
+physician Dr. Johnson via phone communication with client consent. Assisted client in
+downloading and configuring medication reminder application on personal device. Addressed
+Dimension 5 (Relapse Potential) by reinforcing connection between medication compliance and
+craving management.
+
+PROGRESS: Progress toward Goal #1 (maintain sobriety): At risk due to medication
+non-compliance increasing relapse potential. Maintained abstinence despite 3-day medication
+gap and craving emergence. Dimension 1 risk increased from 1 to 2 due to potential withdrawal
+symptoms. Dimension 5 (Relapse Potential) risk increased from 2 to 3 due to cravings and
+medication interruption. Positive indicator: client honestly disclosed non-compliance and
+accepted intervention.
+
+PLAN: Client will restart Suboxone immediately as prescribed and utilize daily reminder
+application for adherence. Follow up with Dr. Johnson within 48 hours for medication
+management appointment. Next individual session in 3 days to assess medication response
+and craving levels. Will implement daily medication log for accountability. Discuss benefits and
+challenges of MAT in next week's group session. If medication non-compliance recurs, consider
+increasing supervision level or alternative MAT options.
+
+
+
+
+Test Case 7: Client Doing Great - 90 Days Clean
+What the counselor says: "Great session with Maria! She got her 90 day chip yesterday and
+started her new job. No cravings for two weeks. She's been doing her gratitude list daily and
+attending meetings regularly. We reviewed her recovery plan and she wants to become a
+sponsor. Discussed responsibilities of sponsorship and suggested waiting until 6 months."
+
+What the system should produce:
+
+SERVICE PROVIDED: Provided 50-minute individual counseling session focusing on recovery
+maintenance and milestone acknowledgment at ASAM Level 1.0 outpatient treatment via
+in-person service
+
+CLIENT RESPONSE: Client presented with positive affect and proud demeanor, celebrating
+90-day sobriety milestone achievement. Reported successful employment initiation at new
+position. Denied cravings for 14 consecutive days. Confirmed consistent completion of daily
+gratitude list and regular meeting attendance. Expressed desire to support others through
+sponsorship role. Demonstrated receptiveness to guidance regarding appropriate sponsorship
+timing.
+
+INTERVENTIONS: Reinforced recovery achievements through milestone acknowledgment and
+strength identification addressing Dimension 4 (Readiness to Change). Reviewed and updated
+recovery maintenance plan incorporating new employment schedule. Provided psychoeducation
+about sponsorship responsibilities and recommended experience guidelines. Explored
+motivation for helping others as recovery-strengthening activity. Validated consistent use of
+recovery tools including gratitude practice and meeting attendance addressing Dimension 5
+(Relapse Potential).
+
+PROGRESS: Exceptional progress toward Goal #1 (maintain sobriety): 90 consecutive days
+abstinent with negative UAs. Goal #2 (improve life functioning): Achieved through successful
+employment acquisition. Dimension 4 (Readiness to Change) risk decreased from 2 to 1 with
+high motivation and engagement. Dimension 5 (Relapse Potential) risk decreased to 1 with
+absence of cravings and strong recovery program. Dimension 6 (Recovery Environment)
+strengthened through consistent support meeting attendance.
+
+PLAN: Continue monthly individual sessions for recovery maintenance support. Client will
+maintain current recovery activities including daily gratitude list and regular meeting attendance
+(minimum 3 per week). Will explore sponsorship readiness at 6-month milestone. Continue new
+employment with attention to work-life-recovery balance. Next session on [DATE] will focus on
+stress management related to new job responsibilities. Consider transition to aftercare/alumni
+status if stability continues for additional 30 days.
+
+
+
+
+Test Case 8: Client Talking About Trauma
+What the counselor says: "Lisa talked about her childhood trauma for the first time. She
+realized she uses cocaine when trauma memories surface. We did some grounding exercises
+when she got overwhelmed. She was shaking at first but calmed down. I gave her the PTSD
+workbook and we'll start Seeking Safety next week. She agreed to call the crisis line if memories
+get too intense."
+
+What the system should produce:
+
+SERVICE PROVIDED: Provided 50-minute individual trauma-informed counseling session
+addressing co-occurring PTSD and substance use disorder at ASAM Level 2.1 intensive
+outpatient program via in-person service
+
+CLIENT RESPONSE: Client disclosed childhood trauma history for first time in treatment,
+demonstrating significant therapeutic trust. Identified connection between trauma memory
+activation and cocaine use patterns. Initially presented with visible anxiety symptoms including
+observable trembling. Successfully engaged in grounding exercises with demonstrated
+physiological calming response. Expressed willingness to engage in trauma-specific treatment
+and accepted crisis resources.
+
+INTERVENTIONS: Implemented trauma-informed grounding techniques (5-4-3-2-1 sensory
+method) to manage acute anxiety symptoms addressing Dimension 3 (Emotional/Behavioral).
+Provided psychoeducation about trauma-substance use connection and normalization of trauma
+responses. Introduced Seeking Safety curriculum materials with PTSD workbook for
+between-session review. Established safety planning including crisis line utilization for
+trauma-related distress. Utilized stabilization techniques prioritizing safety over trauma
+processing given early disclosure.
+
+PROGRESS: Significant progress toward Goal #3 (address trauma symptoms): Initial trauma
+disclosure represents major therapeutic breakthrough. Identified trauma-substance use
+connection supporting integrated treatment approach. Dimension 3 (Emotional/Behavioral) risk
+remains at level 3 due to unresolved trauma requiring careful monitoring. Successfully utilized
+grounding technique with observable anxiety reduction from severe to mild. Readiness for
+trauma-specific intervention demonstrated through engagement and resource acceptance.
+
+PLAN: Begin Seeking Safety protocol next session on [DATE] starting with Topic 1: Safety.
+Client will review PTSD workbook introduction before next session. Established crisis plan: call
+crisis line (988) if trauma memories trigger use urges or severe distress. Continue weekly
+individual sessions with trauma-informed approach. Monitor for increased substance use risk
+during trauma processing. Coordinate with psychiatrist regarding potential PTSD medication
+evaluation. Maintain focus on present-focused coping before deeper trauma processing.
+
+
+
+
+Test Case 9: Court-Ordered Client Who Doesn't Think He
+Has a Problem
+What the counselor says: "Mike is here for court. He doesn't think he has a problem and says
+he only uses socially. Spent most of session in motivational interviewing, exploring pros and
+cons of use. He admitted his DUI scared him and his wife threatened to leave. Small
+breakthrough when he said maybe he drinks more than normal people. Gave him a drinking log
+to track for next week."
+
+What the system should produce:
+
+SERVICE PROVIDED: Provided 50-minute individual counseling session for court-mandated
+client at ASAM Level 1.0 outpatient treatment via in-person service
+
+CLIENT RESPONSE: Client presented with minimization of substance use concerns, stating he
+'only uses socially' and questioning problem severity. Demonstrated pre-contemplation stage
+characteristics with external motivation (court mandate). Disclosed impact of DUI arrest creating
+fear response and marital consequences with spouse threatening separation. Exhibited initial
+change talk stating 'maybe I drink more than normal people' suggesting emerging awareness.
+Accepted self-monitoring tool despite initial resistance.
+
+INTERVENTIONS: Utilized Motivational Interviewing techniques extensively to address
+Dimension 4 (Readiness to Change) including exploring ambivalence through decisional
+balance exercise. Implemented pros and cons exploration of current use patterns without
+confrontation. Reflected client's own change talk to amplify motivation. Avoided argumentation
+while developing discrepancy between values and behavior. Provided self-monitoring tool
+(drinking log) for awareness building. Validated client's autonomy while exploring natural
+consequences of use.
+
+PROGRESS: Initial progress toward Goal #1 (increase problem recognition): Movement from
+complete denial to questioning use patterns. Dimension 4 (Readiness to Change) showing slight
+improvement from pre-contemplation toward contemplation stage. Court mandate compliance
+maintained through session attendance. Emerging recognition of consequences (DUI, marital
+problems) supporting potential motivation development. Acceptance of self-monitoring
+assignment indicates minimal engagement despite resistance.
+
+PLAN: Continue weekly court-mandated sessions focusing on motivation enhancement rather
+than action-oriented interventions. Client will complete drinking log for one week documenting
+amount, frequency, and contexts of alcohol use. Next session on [DATE] will review
+self-monitoring results using MI techniques to develop discrepancy. Avoid premature action
+planning while building intrinsic motivation. Will provide feedback from drinking log in
+non-judgmental manner. Continue exploring relationship between use and life problems without
+direct confrontation.
+
+
+
+
+Test Case 10: Client Finishing Treatment Successfully
+What the counselor says: "Final IOP session with Robert. He completed all requirements and
+has 120 days clean. We reviewed his aftercare plan including weekly NA meetings, monthly
+individual sessions, and psychiatry follow-ups. He identified three main triggers and has solid
+coping plans for each. His wife joined to discuss home support. He's nervous but excited to step
+down to regular outpatient."
+
+What the system should produce:
+
+SERVICE PROVIDED: Provided 50-minute discharge planning session with family involvement
+for transition from ASAM Level 2.1 intensive outpatient to Level 1.0 outpatient treatment via
+in-person service
+
+CLIENT RESPONSE: Client presented with 120 days continuous sobriety and successful
+completion of all IOP requirements. Expressed mixed emotions of nervousness and excitement
+regarding treatment transition. Actively participated in aftercare planning with demonstrated
+understanding of continuing care importance. Successfully identified three primary triggers with
+corresponding coping strategies. Spouse participated supportively in discharge planning
+discussion regarding home environment support strategies.
+
+INTERVENTIONS: Conducted comprehensive discharge planning addressing all six ASAM
+dimensions for appropriate level of care transition. Reviewed and finalized aftercare plan
+including specific recovery activity schedule (weekly NA, monthly individual therapy, psychiatric
+follow-up). Reinforced relapse prevention strategies through trigger-coping plan review.
+Facilitated family involvement in continuing care planning addressing Dimension 6 (Recovery
+Environment). Provided written aftercare plan with specific appointments and contact
+information.
+
+PROGRESS: Successfully achieved Goal #1 (maintain sobriety): 120 consecutive days
+abstinent with consistent negative drug screens. Completed all IOP treatment plan goals
+meeting discharge criteria. ASAM dimension risks decreased across all areas: Dimension 1 (0),
+Dimension 2 (1), Dimension 3 (1), Dimension 4 (0), Dimension 5 (1), Dimension 6 (1).
+Demonstrated internalization of recovery skills through independent trigger identification and
+coping plan development. Strong recovery environment established with family support.
+
+PLAN: Transition to ASAM Level 1.0 outpatient treatment effective [DATE]. Aftercare plan
+includes: Weekly NA meetings (minimum 2), monthly individual therapy sessions with this
+counselor, quarterly psychiatric medication management with Dr. Smith. First outpatient
+appointment scheduled [DATE]. Client has crisis plan and contact numbers if urgent needs
+arise. Three-month aftercare follow-up scheduled to assess continued stability. Eligible for
+alumni program participation and invited to monthly alumni support group.
+
+
+
+
+Special Cases: When Things Go Wrong
+Bad Audio Quality
+
+If the recording has coughing, background noise, or unclear words, the system should:
+
+   ●​ Tell the counselor: "Unable to process full audio. Please use manual input or re-record in
+      quieter environment."
+   ●​ Save what it could understand
+   ●​ Let them type the rest
+
+Too Much Slang
+
+If counselor says something like: "Yo, my dude was totally tweaking today" The system should:
+
+   ●​ Try to translate it professionally
+   ●​ Flag it with a warning: "Original language required extensive translation. Please review
+      for accuracy."
+
+Recording Cuts Off
+
+If the counselor stops mid-sentence, the system should ask:
+
+   ●​ "Recording appears incomplete. Would you like to:"
+         ○​ Continue recording where you left off
+         ○​ Start over
+         ○​ Complete manually
+
+
+
+
+How to Know If the Output is Good
+The system checks for:
+
+   1.​ All 5 sections present (SERVICE, RESPONSE, INTERVENTIONS, PROGRESS, PLAN)
+   2.​ At least one ASAM dimension mentioned
+   3.​ At least one number (days sober, scores, etc.)
+   4.​ No casual words like "really," "stuff," "kinda"
+   5.​ Minimum length for each section (at least 50 characters)
+   6.​ No placeholder text with brackets [ ]
+
+
+Performance Goals
+   ●​ Processing time: Under 3 seconds
+   ●​ Accuracy: At least 85%
+   ●​ Compliance score: At least 95%
+●​ Manual corrections needed: Maximum 2
+

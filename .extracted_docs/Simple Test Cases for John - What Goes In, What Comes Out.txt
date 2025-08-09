@@ -1,0 +1,334 @@
+Simple Test Cases for John - What Goes
+In, What Comes Out
+
+Test 1: Basic Session
+
+Counselor says (normal talk):
+
+      "Client was anxious, about 7 out of 10, been clean 30 days. We worked on
+      breathing. Gave homework to write down triggers. See him next week."
+
+Computer spits out (fancy version):
+
+SERVICE PROVIDED:
+
+Provided 50-minute individual substance use disorder counseling session at ASAM Level 2.1.
+
+
+
+CLIENT RESPONSE:
+
+Client presented with anxiety symptoms, self-reporting 7/10 severity. Reported 30 days sober.
+
+
+
+INTERVENTIONS:
+
+Implemented breathing exercises. Assigned trigger tracking homework.
+
+
+
+PROGRESS:
+
+Client demonstrating progress toward Goal #1 with 30 days abstinent.
+
+
+
+PLAN:
+
+Continue weekly sessions. Client to complete trigger worksheet. Next session next week.
+Test 2: Depression Session
+
+Counselor says (normal talk):
+
+      "She seemed really depressed today, maybe a 4 out of 10 mood. Talked about
+      negative thoughts. She's only been to one meeting this week. I taught her thought
+      stopping. Next time we'll do more CBT."
+
+Computer spits out (fancy version):
+
+SERVICE PROVIDED:
+
+Provided 50-minute individual substance use disorder counseling session at ASAM Level 2.1.
+
+
+
+CLIENT RESPONSE:
+
+Client presented with depressed mood, self-reporting 4/10 on mood scale.
+
+
+
+INTERVENTIONS:
+
+Addressed negative thought patterns. Taught thought stopping techniques.
+
+
+
+PROGRESS:
+
+Limited progress toward Goal #5 (Support Network) - attended 1 support meeting.
+
+
+
+PLAN:
+
+Next session will focus on Cognitive Behavioral Therapy interventions.
+
+
+
+
+Test 3: Good Progress Session
+
+Counselor says (normal talk):
+      "Client doing great, 60 days clean, good mood. Went to all his meetings. We
+      reviewed his coping skills. He's been using them. Continue same plan."
+
+Computer spits out (fancy version):
+
+SERVICE PROVIDED:
+
+Provided 50-minute individual substance use disorder counseling session at ASAM Level 2.1.
+
+
+
+CLIENT RESPONSE:
+
+Client presented with positive mood. Reported 60 days of continuous sobriety.
+
+
+
+INTERVENTIONS:
+
+Reviewed and reinforced previously taught coping strategies.
+
+
+
+PROGRESS:
+
+Excellent progress toward Goal #1 with 60 days abstinent. Full attendance at support meetings.
+Successfully utilizing coping skills.
+
+
+
+PLAN:
+
+Continue current treatment plan and session frequency.
+
+
+
+
+Test 4: Relapse Session
+
+Counselor says (normal talk):
+
+      "Client relapsed, used yesterday. Very upset about it. We talked about what
+      happened and made a safety plan. Needs to call sponsor daily. See tomorrow."
+
+Computer spits out (fancy version):
+SERVICE PROVIDED:
+
+Provided 50-minute individual substance use disorder counseling session at ASAM Level 2.1.
+
+
+
+CLIENT RESPONSE:
+
+Client reported recent substance use. Exhibited emotional distress regarding relapse.
+
+
+
+INTERVENTIONS:
+
+Processed relapse triggers. Developed safety plan.
+
+
+
+PROGRESS:
+
+Client experienced return to use. Dimension 5 (Relapse Potential) risk increased to level 3.
+
+
+
+PLAN:
+
+Daily contact with sponsor required. Next session scheduled tomorrow for intensive support.
+
+
+
+
+Test 5: Group Session
+
+Counselor says (normal talk):
+
+      "Group session, 90 minutes. Everyone participated. Talked about coping with
+      cravings. Gave worksheet on triggers. Meet again Thursday."
+
+Computer spits out (fancy version):
+
+SERVICE PROVIDED:
+
+Provided 90-minute group therapy session at ASAM Level 2.1.
+
+
+
+CLIENT RESPONSE:
+All group members actively participated in discussion.
+
+
+
+INTERVENTIONS:
+
+Facilitated group discussion on craving management. Distributed trigger identification
+worksheet.
+
+
+
+PROGRESS:
+
+Group demonstrating engagement with recovery concepts.
+
+
+
+PLAN:
+
+Continue group sessions. Next group scheduled Thursday.
+
+
+
+
+Test 6: Quick Check-in
+
+Counselor says (normal talk):
+
+      "Quick check-in, client stable, 14 days clean, no issues, continue plan."
+
+Computer spits out (fancy version):
+
+SERVICE PROVIDED:
+
+Provided brief individual check-in session at ASAM Level 2.1.
+
+
+
+CLIENT RESPONSE:
+
+Client presented as stable. Reported 14 days abstinent.
+
+
+
+INTERVENTIONS:
+
+Provided supportive counseling and encouragement.
+PROGRESS:
+
+Progress toward Goal #1 with 14 consecutive days abstinent.
+
+
+
+PLAN:
+
+Continue current treatment plan.
+
+
+
+
+Test 7: Family Session
+
+Counselor says (normal talk):
+
+      "Family session with wife. Both engaged. Discussed how addiction affected
+      marriage. Taught communication skills. Homework to practice talking without blame.
+      Next family session in two weeks."
+
+Computer spits out (fancy version):
+
+SERVICE PROVIDED:
+
+Provided 50-minute family therapy session at ASAM Level 2.1.
+
+
+
+CLIENT RESPONSE:
+
+Client and spouse both actively engaged in session.
+
+
+
+INTERVENTIONS:
+
+Addressed addiction's impact on relationship. Taught healthy communication techniques.
+
+
+
+PROGRESS:
+
+Progress toward Goal #6 (Family Relationships) with spouse participation.
+PLAN:
+
+Couple to practice non-blame communication. Next family session in two weeks.
+
+
+
+
+Test 8: Crisis Session
+
+Counselor says (normal talk):
+
+      "Client in crisis, very anxious, 9 out of 10, having cravings. Did breathing, made
+      safety plan, called support person. Seeing him again tomorrow morning."
+
+Computer spits out (fancy version):
+
+SERVICE PROVIDED:
+
+Provided crisis intervention session at ASAM Level 2.1.
+
+
+
+CLIENT RESPONSE:
+
+Client presented in acute distress with anxiety 9/10 severity. Reported intense cravings.
+
+
+
+INTERVENTIONS:
+
+Implemented crisis breathing techniques. Developed immediate safety plan. Facilitated support
+system activation.
+
+
+
+PROGRESS:
+
+Dimension 5 (Relapse Potential) risk elevated to level 4.
+
+
+
+PLAN:
+
+Follow-up session scheduled tomorrow morning. Client to utilize safety plan and maintain
+contact with support person.
+Edge Cases (Tricky Ones)
+
+When counselor says almost nothing:
+
+Input: "Session happened. Client fine. Same plan." Output: Uses mostly defaults but still
+makes complete note
+
+
+When counselor rambles:
+
+Input: "So the client came in and we talked for a while about various things including his mother
+and his job and his dog died last week which was sad and he's been sober I think he said 45
+days or maybe 44 I can't remember exactly but around that and we did some CBT stuff and
+breathing and I gave him the usual homework sheets." Output: Picks out the important parts
+and ignores the rambling
+
+
+When counselor uses slang:
+
+Input: "Dude was totally tweaking but he's clean now. Been hitting meetings hard." Output:
+"Client previously exhibited substance use symptoms but currently maintains sobriety. Actively
+attending support meetings."
+

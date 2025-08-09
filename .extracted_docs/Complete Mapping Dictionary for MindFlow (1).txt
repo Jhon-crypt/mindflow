@@ -1,0 +1,318 @@
+casual_phrase,clinical_translation,category
+
+"upset","exhibited emotional distress","emotional"
+
+"sad","presented with depressed affect","emotional"
+
+"happy","displayed euthymic mood","emotional"
+
+"angry","demonstrated emotional dysregulation","emotional"
+
+"anxious","presented with anxiety symptoms","emotional"
+
+"worried","expressed anxiety regarding","emotional"
+
+"stressed","reported elevated stress levels","emotional"
+
+"frustrated","exhibited frustration tolerance difficulties","emotional"
+
+"crying","displayed tearful affect","emotional"
+
+"laughing","demonstrated appropriate affect","emotional"
+
+"scared","expressed fear and apprehension","emotional"
+
+"nervous","presented with observable anxiety","emotional"
+
+"calm","appeared emotionally regulated","emotional"
+
+"mad","expressed anger","emotional"
+
+"depressed","exhibited depressive symptoms","emotional"
+
+"fine","reported stable mood","emotional"
+
+"okay","indicated baseline functioning","emotional"
+
+"good mood","presented with positive affect","emotional"
+
+"bad mood","displayed dysphoric mood","emotional"
+
+"mood swings","exhibited affective lability","emotional"
+
+"doing better","demonstrating clinical improvement","progress"
+
+"doing worse","showing decompensation","progress"
+
+"getting better","exhibiting positive treatment response","progress"
+"not doing well","experiencing symptom exacerbation","progress"
+
+"improved","showed measurable progress","progress"
+
+"no change","maintained baseline","progress"
+
+"declined","demonstrated regression","progress"
+
+"stable","maintaining clinical stability","progress"
+
+"struggling","experiencing ongoing challenges","progress"
+
+"making progress","achieving treatment milestones","progress"
+
+"setback","experienced temporary regression","progress"
+
+"relapsed","returned to substance use","progress"
+
+"clean","maintaining sobriety","progress"
+
+"sober","abstinent from substances","progress"
+
+"using","engaged in substance use","progress"
+
+"talked about","discussed and processed","intervention"
+
+"worked on","implemented interventions targeting","intervention"
+
+"practiced","engaged in skill rehearsal","intervention"
+
+"went over","reviewed and reinforced","intervention"
+
+"taught","provided psychoeducation regarding","intervention"
+
+"explained","clarified therapeutic concepts","intervention"
+
+"showed","demonstrated technique for","intervention"
+
+"tried","attempted implementation of","intervention"
+
+"did","completed therapeutic exercise","intervention"
+
+"focused on","targeted intervention toward","intervention"
+
+"addressed","processed therapeutic content regarding","intervention"
+
+"explored","examined underlying factors","intervention"
+"identified","recognized patterns related to","intervention"
+
+"realized","developed insight regarding","cognitive"
+
+"understood","demonstrated comprehension of","cognitive"
+
+"learned","acquired new coping strategies","cognitive"
+
+"remembered","recalled previous therapeutic content","cognitive"
+
+"forgot","exhibited memory difficulties regarding","cognitive"
+
+"confused","displayed cognitive disorganization","cognitive"
+
+"clear thinking","demonstrated organized thought process","cognitive"
+
+"racing thoughts","reported accelerated thought patterns","cognitive"
+
+"slow thinking","exhibited psychomotor retardation","cognitive"
+
+"focused","maintained appropriate attention","cognitive"
+
+"distracted","demonstrated attention deficits","cognitive"
+
+"concentrating","sustained focus appropriately","cognitive"
+
+"family problems","familial relationship stressors","social"
+
+"relationship issues","interpersonal difficulties","social"
+
+"work stress","occupational stressors","social"
+
+"school problems","academic challenges","social"
+
+"friend drama","peer relationship conflicts","social"
+
+"lonely","experiencing social isolation","social"
+
+"isolated","demonstrating social withdrawal","social"
+
+"social anxiety","interpersonal anxiety symptoms","social"
+
+"fighting with","experiencing conflict with","social"
+
+"getting along","improved relational dynamics","social"
+
+"support system","social support network","social"
+"no friends","lacks peer relationships","social"
+
+"suicide thoughts","suicidal ideation","risk"
+
+"wants to die","expressed death wishes","risk"
+
+"self-harm","engaged in self-injurious behavior","risk"
+
+"cutting","self-mutilation behaviors","risk"
+
+"overdose","substance overdose attempt","risk"
+
+"unsafe","engaging in risk-taking behaviors","risk"
+
+"dangerous","high-risk behavioral patterns","risk"
+
+"hurting self","self-injurious intentions","risk"
+
+"hurting others","expressed homicidal ideation","risk"
+
+"aggressive","displayed aggressive behaviors","risk"
+
+"violent","exhibited violent tendencies","risk"
+
+"safe","denied safety concerns","risk"
+
+"no risk","no acute safety issues identified","risk"
+
+"contracted for safety","agreed to safety plan","risk"
+
+"pills","medication","medical"
+
+"meds","prescribed medications","medical"
+
+"side effects","medication adverse effects","medical"
+
+"sleeping better","improved sleep hygiene","medical"
+
+"can't sleep","experiencing insomnia","medical"
+
+"tired","reported fatigue","medical"
+
+"energy","energy levels","medical"
+
+"appetite","nutritional intake patterns","medical"
+
+"eating too much","increased appetite","medical"
+"not eating","decreased appetite","medical"
+
+"weight loss","unintentional weight reduction","medical"
+
+"weight gain","increased body weight","medical"
+
+"agreed to","expressed willingness to","engagement"
+
+"refused","declined participation in","engagement"
+
+"willing to try","demonstrated openness to","engagement"
+
+"doesn't want to","resistant to treatment","engagement"
+
+"compliant","adherent to treatment plan","engagement"
+
+"non-compliant","non-adherent to recommendations","engagement"
+
+"engaged","actively participated","engagement"
+
+"withdrawn","minimal engagement observed","engagement"
+
+"cooperative","collaborative in session","engagement"
+
+"resistant","demonstrated treatment resistance","engagement"
+
+"motivated","displayed intrinsic motivation","engagement"
+
+"unmotivated","lacking treatment motivation","engagement"
+
+"homework","therapeutic assignments","tasks"
+
+"exercises","coping skill practices","tasks"
+
+"journal","therapeutic writing assignments","tasks"
+
+"worksheets","cognitive behavioral exercises","tasks"
+
+"practice","skill implementation","tasks"
+
+"assignment","between-session tasks","tasks"
+
+"goal","treatment objective","tasks"
+
+"plan","treatment planning","tasks"
+
+"next time","next scheduled session","time"
+"last week","previous session","time"
+
+"today","current session","time"
+
+"yesterday","previous day","time"
+
+"tomorrow","following day","time"
+
+"always","persistent pattern","time"
+
+"never","absence of behavior","time"
+
+"sometimes","intermittent occurrence","time"
+
+"a lot","significant frequency","measurement"
+
+"a little","minimal presentation","measurement"
+
+"very","significantly","measurement"
+
+"really","notably","measurement"
+
+"kind of","somewhat","measurement"
+
+"maybe","possibly","measurement"
+
+"probably","likely","measurement"
+
+"definitely","certainly","measurement"
+
+"0-10 scale","subjective units of distress scale","measurement"
+
+"1 to 10","numerical severity rating","measurement"
+
+"mild","mild severity","measurement"
+
+"moderate","moderate severity","measurement"
+
+"severe","severe presentation","measurement"
+
+"drunk","intoxicated","substance"
+
+"high","under influence of substances","substance"
+
+"buzzed","mild intoxication","substance"
+
+"wasted","severe intoxication","substance"
+"blackout","alcohol-induced amnesia","substance"
+
+"withdrawal","substance withdrawal symptoms","substance"
+
+"cravings","substance use urges","substance"
+
+"triggers","relapse triggers","substance"
+
+"NA/AA","12-step program participation","substance"
+
+"sponsor","12-step sponsor relationship","substance"
+
+"seems like","appears to demonstrate","observation"
+
+"looks like","observable presentation suggests","observation"
+
+"noticed","clinical observation noted","observation"
+
+"saw","observed","observation"
+
+"heard","reported","observation"
+
+"said","verbalized","observation"
+
+"told me","disclosed","observation"
+
+"mentioned","referenced","observation"
+
+"brought up","initiated discussion regarding","observation"
+
+"complained about","expressed concerns regarding","observation"
+
+"denied","refuted","observation"
+
+"admitted","acknowledged","observation"
+

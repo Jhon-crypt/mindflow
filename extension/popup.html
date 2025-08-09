@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindFlow</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 320px;
+      height: 480px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 13px;
+      background: #fafbfc;
+      overflow: hidden;
+    }
+
+    /* Header - Minimal and Clean */
+    .header {
+      background: white;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .logo-dot {
+      width: 12px;
+      height: 12px;
+      background: #6B46C1;
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+
+    .logo-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .tagline {
+      font-size: 11px;
+      color: #6b7280;
+      margin: 0;
+    }
+
+    /* Main Content Area */
+    .content {
+      padding: 0;
+      height: calc(100% - 85px);
+      overflow-y: auto;
+    }
+
+    /* Section Styles - Minimal Cards */
+    .section {
+      background: white;
+      margin: 12px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+    }
+
+    .section-header {
+      padding: 12px 16px;
+      background: #f8f9fa;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 12px;
+      font-weight: 500;
+      color: #374151;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-content {
+      padding: 16px;
+    }
+
+    /* Quick Actions - Minimal Button Grid */
+    .action-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .action-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 8px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 150ms ease-out;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .action-btn:hover {
+      background: #f3f4f6;
+      border-color: #6B46C1;
+      transform: translateY(-1px);
+    }
+
+    .action-btn:active {
+      transform: translateY(0);
+    }
+
+    .action-icon {
+      font-size: 20px;
+      margin-bottom: 6px;
+      opacity: 0.8;
+    }
+
+    .action-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: #374151;
+      text-align: center;
+    }
+
+    /* Voice Interface - Minimal Recording UI */
+    .voice-interface {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .recording-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .recording-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #6b7280;
+      transition: all 150ms;
+    }
+
+    .recording-dot.active {
+      background: #DC2626;
+      animation: pulse-dot 1500ms ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0% { opacity: 1; }
+      50% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+
+    .recording-timer {
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .voice-btn {
+      background: #6B46C1;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 150ms;
+    }
+
+    .voice-btn:hover {
+      background: #553C9A;
+    }
+
+    .voice-btn.stop {
+      background: #DC2626;
+    }
+
+    .voice-btn.stop:hover {
+      background: #B91C1C;
+    }
+
+    /* Text Enhancement - Clean Input/Output */
+    .text-area {
+      width: 100%;
+      height: 80px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 12px;
+      font-family: inherit;
+      resize: vertical;
+      margin-bottom: 12px;
+    }
+
+    .text-area:focus {
+      outline: none;
+      border-color: #6B46C1;
+      box-shadow: 0 0 0 2px rgba(107, 70, 193, 0.1);
+    }
+
+    .enhance-btn {
+      width: 100%;
+      background: #6B46C1;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 150ms;
+      margin-bottom: 12px;
+    }
+
+    .enhance-btn:hover {
+      background: #553C9A;
+    }
+
+    /* Templates - Minimal List */
+    .template-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .template-item {
+      text-align: left;
+      padding: 10px 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      background: white;
+      cursor: pointer;
+      transition: all 150ms;
+    }
+
+    .template-item:hover {
+      background: #f3f4f6;
+      border-color: #6B46C1;
+    }
+
+    .template-title {
+      font-size: 12px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 2px;
+    }
+
+    .template-desc {
+      font-size: 10px;
+      color: #6b7280;
+    }
+
+    /* Results - Clean Output */
+    .results {
+      background: #f8f9fa;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 12px;
+      margin-top: 12px;
+    }
+
+    .results-header {
+      font-size: 11px;
+      font-weight: 500;
+      color: #059669;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .results-content {
+      font-size: 11px;
+      line-height: 1.4;
+      color: #374151;
+      white-space: pre-wrap;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+
+    .copy-btn {
+      width: 100%;
+      background: white;
+      color: #6B46C1;
+      border: 1px solid #6B46C1;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: all 150ms;
+    }
+
+    .copy-btn:hover {
+      background: #6B46C1;
+      color: white;
+    }
+
+    /* Hidden State */
+    .hidden {
+      display: none !important;
+    }
+
+    /* Status Indicator */
+    .status {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22C55E;
+      opacity: 0.6;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #d1d5db;
+      border-radius: 2px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <!-- Status Indicator -->
+  <div class="status" id="statusDot"></div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">
+      <div class="logo-dot"></div>
+      <span class="logo-text">MindFlow</span>
+    </div>
+    <p class="tagline">Clinical Note Enhancement</p>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Quick Actions -->
+    <div class="section">
+      <div class="section-header">
+        <span>🎯</span>
+        Quick Actions
+      </div>
+      <div class="section-content">
+        <div class="action-grid">
+          <button class="action-btn" id="voiceBtn">
+            <div class="action-icon">🎤</div>
+            <div class="action-label">Voice Record</div>
+          </button>
+          <button class="action-btn" id="enhanceBtn">
+            <div class="action-icon">✨</div>
+            <div class="action-label">Enhance Text</div>
+          </button>
+          <button class="action-btn" id="templatesBtn">
+            <div class="action-icon">📋</div>
+            <div class="action-label">Templates</div>
+          </button>
+          <button class="action-btn" id="clipboardBtn">
+            <div class="action-icon">📄</div>
+            <div class="action-label">Copy Output</div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Voice Recording Section -->
+    <div class="section hidden" id="voiceSection">
+      <div class="section-header">
+        <span>🎤</span>
+        Voice Recording
+      </div>
+      <div class="section-content">
+        <div class="voice-interface">
+          <div class="recording-status">
+            <div class="recording-dot" id="recordingDot"></div>
+            <span class="recording-timer" id="recordingTimer">0:00</span>
+          </div>
+          <button class="voice-btn" id="recordBtn">Start Recording</button>
+          <textarea class="text-area" id="transcriptionText" placeholder="Transcribed text will appear here..." readonly></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text Enhancement Section -->
+    <div class="section hidden" id="enhanceSection">
+      <div class="section-header">
+        <span>✨</span>
+        Text Enhancement
+      </div>
+      <div class="section-content">
+        <textarea class="text-area" id="inputText" placeholder="Paste your casual notes here..."></textarea>
+        <button class="enhance-btn" id="processBtn">✨ Enhance to 245G Format</button>
+        <div class="results hidden" id="results">
+          <div class="results-header">
+            <span>✅</span>
+            245G-Compliant Output
+          </div>
+          <div class="results-content" id="outputText"></div>
+          <button class="copy-btn" id="copyBtn">📄 Copy to Clipboard</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Templates Section -->
+    <div class="section hidden" id="templatesSection">
+      <div class="section-header">
+        <span>📋</span>
+        Session Templates
+      </div>
+      <div class="section-content">
+        <div class="template-list">
+          <button class="template-item" data-template="individual">
+            <div class="template-title">Individual Session</div>
+            <div class="template-desc">One-on-one counseling template</div>
+          </button>
+          <button class="template-item" data-template="group">
+            <div class="template-title">Group Session</div>
+            <div class="template-desc">Group therapy template</div>
+          </button>
+          <button class="template-item" data-template="family">
+            <div class="template-title">Family Session</div>
+            <div class="template-desc">Family therapy template</div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

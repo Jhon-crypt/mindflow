@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "MindFlow - Clinical Note Enhancement",
+  "version": "1.0.0",
+  "description": "Transform casual counselor notes into Minnesota 245G-compliant progress notes with voice input and clinical language enhancement.",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  
+  "optional_permissions": [
+    "microphone"
+  ],
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"],
+      "css": ["mindflow-ui.css"],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "MindFlow"
+  },
+  
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  
+  "icons": {
+    "16": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHJ4PSIzIiBmaWxsPSIjNkI0NkMxIi8+CiAgPGNpcmNsZSBjeD0iOCIgY3k9IjYiIHI9IjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjkiLz4KICA8cGF0aCBkPSJNNSAxMCBROCAxMiAxMSAxMCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIG9wYWNpdHk9IjAuOSIvPgogIDxjaXJjbGUgY3g9IjgiIGN5PSIxMyIgcj0iMC44IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC43Ii8+Cjwvc3ZnPg==",
+    "32": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSIjNkI0NkMxIi8+CiAgPGNpcmNsZSBjeD0iMTYiIGN5PSIxMiIgcj0iNCIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOSIvPgogIDxwYXRoIGQ9Ik0xMCAyMCBRMTYgMjQgMjIgMjAiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC45Ii8+CiAgPGNpcmNsZSBjeD0iMTYiIGN5PSIyNiIgcj0iMS42IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC43Ii8+Cjwvc3ZnPg==",
+    "48": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHJ4PSI5IiBmaWxsPSIjNkI0NkMxIi8+CiAgPGNpcmNsZSBjeD0iMjQiIGN5PSIxOCIgcj0iNiIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOSIvPgogIDxwYXRoIGQ9Ik0xNSAzMCBRMjQgMzYgMzMgMzAiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iNC41IiBmaWxsPSJub25lIiBvcGFjaXR5PSIwLjkiLz4KICA8Y2lyY2xlIGN4PSIyNCIgY3k9IjM5IiByPSIyLjQiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjciLz4KPC9zdmc+",
+    "128": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgdmlld0JveD0iMCAwIDEyOCAxMjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiIHJ4PSIyNCIgZmlsbD0iIzZCNDZDMSIvPgogIDxjaXJjbGUgY3g9IjY0IiBjeT0iNDgiIHI9IjE2IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC45Ii8+CiAgPHBhdGggZD0iTTQwIDgwIFE2NCA5NiA4OCA4MCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxMiIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC45Ii8+CiAgPGNpcmNsZSBjeD0iNjQiIGN5PSIxMDQiIHI9IjYuNCIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuNyIvPgo8L3N2Zz4="
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["mindflow-ui.css", "icons/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

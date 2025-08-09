@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MindFlow Icon Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .icon-container { margin: 20px 0; }
+        canvas { border: 1px solid #ccc; margin: 10px; }
+        .download-links { margin: 10px 0; }
+        .download-links a { 
+            display: inline-block; 
+            margin: 5px 10px; 
+            padding: 8px 16px; 
+            background: #6B46C1; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 4px; 
+        }
+    </style>
+</head>
+<body>
+    <h1>🎯 MindFlow Icon Generator</h1>
+    <p>Generating extension icons in multiple sizes...</p>
+    
+    <div class="icon-container">
+        <h3>MindFlow Icons (Enabled)</h3>
+        <canvas id="icon16" width="16" height="16"></canvas>
+        <canvas id="icon32" width="32" height="32"></canvas>
+        <canvas id="icon48" width="48" height="48"></canvas>
+        <canvas id="icon128" width="128" height="128"></canvas>
+        
+        <div class="download-links">
+            <a href="#" id="download16">Download 16px</a>
+            <a href="#" id="download32">Download 32px</a>
+            <a href="#" id="download48">Download 48px</a>
+            <a href="#" id="download128">Download 128px</a>
+        </div>
+    </div>
+
+    <div class="icon-container">
+        <h3>MindFlow Icons (Disabled)</h3>
+        <canvas id="icon16d" width="16" height="16"></canvas>
+        <canvas id="icon32d" width="32" height="32"></canvas>
+        <canvas id="icon48d" width="48" height="48"></canvas>
+        <canvas id="icon128d" width="128" height="128"></canvas>
+        
+        <div class="download-links">
+            <a href="#" id="download16d">Download 16px Disabled</a>
+            <a href="#" id="download32d">Download 32px Disabled</a>
+            <a href="#" id="download48d">Download 48px Disabled</a>
+            <a href="#" id="download128d">Download 128px Disabled</a>
+        </div>
+    </div>
+
+    <script>
+        function drawIcon(canvas, size, disabled = false) {
+            const ctx = canvas.getContext('2d');
+            const scale = size / 16;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Background
+            ctx.fillStyle = disabled ? '#9CA3AF' : '#6B46C1';
+            ctx.roundRect = function(x, y, w, h, r) {
+                this.beginPath();
+                this.moveTo(x + r, y);
+                this.lineTo(x + w - r, y);
+                this.quadraticCurveTo(x + w, y, x + w, y + r);
+                this.lineTo(x + w, y + h - r);
+                this.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+                this.lineTo(x + r, y + h);
+                this.quadraticCurveTo(x, y + h, x, y + h - r);
+                this.lineTo(x, y + r);
+                this.quadraticCurveTo(x, y, x + r, y);
+                this.closePath();
+            };
+            
+            ctx.roundRect(0, 0, size, size, 3 * scale);
+            ctx.fill();
+            
+            // Main dot (brain/mind symbol)
+            ctx.fillStyle = disabled ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.9)';
+            ctx.beginPath();
+            ctx.arc(8 * scale, 6 * scale, 2 * scale, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Flow curve
+            ctx.strokeStyle = disabled ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.9)';
+            ctx.lineWidth = 1.5 * scale;
+            ctx.beginPath();
+            ctx.moveTo(5 * scale, 10 * scale);
+            ctx.quadraticCurveTo(8 * scale, 12 * scale, 11 * scale, 10 * scale);
+            ctx.stroke();
+            
+            // Small enhancement dot
+            ctx.fillStyle = disabled ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.7)';
+            ctx.beginPath();
+            ctx.arc(8 * scale, 13 * scale, 0.8 * scale, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        
+        function setupDownload(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.getElementById('download' + canvasId.replace('icon', ''));
+            
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const url = canvas.toDataURL('image/png');
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.click();
+            });
+        }
+        
+        // Generate all icons
+        drawIcon(document.getElementById('icon16'), 16, false);
+        drawIcon(document.getElementById('icon32'), 32, false);
+        drawIcon(document.getElementById('icon48'), 48, false);
+        drawIcon(document.getElementById('icon128'), 128, false);
+        
+        drawIcon(document.getElementById('icon16d'), 16, true);
+        drawIcon(document.getElementById('icon32d'), 32, true);
+        drawIcon(document.getElementById('icon48d'), 48, true);
+        drawIcon(document.getElementById('icon128d'), 128, true);
+        
+        // Setup downloads
+        setupDownload('icon16', 'mindflow-16.png');
+        setupDownload('icon32', 'mindflow-32.png');
+        setupDownload('icon48', 'mindflow-48.png');
+        setupDownload('icon128', 'mindflow-128.png');
+        
+        setupDownload('icon16d', 'mindflow-16-disabled.png');
+        setupDownload('icon32d', 'mindflow-32-disabled.png');
+        setupDownload('icon48d', 'mindflow-48-disabled.png');
+        setupDownload('icon128d', 'mindflow-128-disabled.png');
+        
+        console.log('MindFlow icons generated! Click the download links to save them.');
+    </script>
+</body>
+</html>

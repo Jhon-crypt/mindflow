@@ -1,0 +1,608 @@
+Detailed Mapping System for John
+1. SERVICE PROVIDED Section
+javascript
+const SERVICE_PROVIDED_RULES = {
+  // This section is 90% template, 10% voice
+
+ template_base: "Provided [DURATION] minute [TYPE] session at ASAM Level [LEVEL]",
+
+ voice_detection: {
+  duration: {
+    triggers: ["minutes", "minute", "min", "hour"],
+    examples: {
+      "50 minutes": "50-minute",
+      "half hour": "30-minute",
+      "one hour": "60-minute",
+      "45 min": "45-minute"
+    }
+  },
+
+  session_type: {
+    triggers: ["individual", "group", "family", "one-on-one", "1:1"],
+    mapping: {
+      "individual": "individual substance use disorder counseling",
+      "group": "group therapy",
+      "family": "family therapy",
+      "one-on-one": "individual substance use disorder counseling",
+      "1:1": "individual substance use disorder counseling",
+      "IOP": "intensive outpatient program group"
+    }
+  },
+
+  modality: {
+   triggers: ["telehealth", "phone", "in-person", "virtual", "zoom", "video"],
+   mapping: {
+     "telehealth": "via telehealth platform",
+     "phone": "via telephone",
+     "in-person": "via in-person service",
+     "virtual": "via telehealth platform",
+     "zoom": "via video conferencing",
+     "video": "via video conferencing"
+   }
+     },
+
+      asam_level: {
+        triggers: ["level", "ASAM", "IOP", "outpatient", "intensive"],
+        mapping: {
+          "IOP": "2.1",
+          "intensive outpatient": "2.1",
+          "outpatient": "1.0",
+          "partial": "2.5",
+          "residential": "3.5"
+        }
+      }
+    },
+
+    // If voice doesn't specify, use these defaults
+    defaults: {
+      duration: "50",
+      type: "individual substance use disorder counseling",
+      modality: "via in-person service",
+      asam_level: "2.1"
+    },
+
+ examples: [
+   {
+     voice: "50 minute individual session",
+     output: "Provided 50-minute individual substance use disorder counseling session at ASAM
+Level 2.1 via in-person service"
+   },
+   {
+     voice: "group IOP telehealth",
+     output: "Provided 90-minute intensive outpatient program group session at ASAM Level 2.1
+via telehealth platform"
+   }
+ ]
+}
+
+
+2. CLIENT RESPONSE Section
+javascript
+const CLIENT_RESPONSE_RULES = {
+  // This section captures how the client presented and engaged
+
+    primary_triggers: [
+     "client", "he", "she", "they", "patient", "member", "seemed", "appeared",
+  "looked", "presented", "was", "reported", "said", "stated", "denied", "admitted"
+],
+
+mood_indicators: {
+ triggers: ["mood", "affect", "feeling", "felt", "emotional"],
+ mapping: {
+   // Counselor says → Professional documentation
+   "good mood": "presented with euthymic mood",
+   "bad mood": "exhibited dysphoric mood",
+   "up and down": "demonstrated mood lability",
+   "depressed": "presented with depressed affect",
+   "anxious": "exhibited anxiety symptoms",
+   "angry": "displayed irritable affect",
+   "happy": "presented with bright affect",
+   "flat": "demonstrated flat affect",
+   "crying": "became tearful",
+   "laughing": "displayed appropriate humor"
+ },
+
+  severity_mapping: {
+    "1": "minimal",
+    "2": "mild",
+    "3": "mild",
+    "4": "moderate",
+    "5": "moderate",
+    "6": "moderate-severe",
+    "7": "severe",
+    "8": "severe",
+    "9": "extreme",
+    "10": "extreme"
+  }
+},
+
+engagement_indicators: {
+ triggers: ["engaged", "participated", "resistant", "cooperative", "withdrawn"],
+ mapping: {
+   "engaged": "actively engaged in session",
+   "didn't want to talk": "demonstrated resistance to therapeutic process",
+   "participated": "participated appropriately",
+   "cooperative": "demonstrated cooperative behavior",
+   "withdrawn": "appeared withdrawn with minimal engagement",
+   "talkative": "verbally engaged throughout session",
+   "quiet": "provided minimal verbal responses",
+   "distracted": "exhibited difficulty maintaining focus",
+      "focused": "maintained appropriate attention"
+  }
+},
+
+substance_use_reporting: {
+  triggers: ["sober", "clean", "used", "relapsed", "days", "drinking", "high"],
+  mapping: {
+    "been clean": "reported continuous sobriety",
+    "days sober": "reported [X] days of continuous sobriety",
+    "days clean": "reported [X] consecutive days abstinent",
+    "relapsed": "disclosed recent substance use",
+    "slipped": "reported brief return to use",
+    "used": "admitted to substance use",
+    "drinking": "reported alcohol consumption",
+    "no use": "denied any substance use",
+    "staying sober": "maintaining sobriety"
+  }
+},
+
+direct_quotes: {
+  triggers: ["said", "told me", "stated", "mentioned", "brought up"],
+  instruction: "Keep direct quotes but add professional context",
+  examples: [
+    {
+      voice: "client said 'I can't do this anymore'",
+      output: "Client stated, 'I can't do this anymore,' expressing feelings of hopelessness"
+    },
+    {
+      voice: "said he's doing better",
+      output: "Client reported subjective improvement in overall functioning"
+    }
+  ]
+},
+
+observable_behaviors: {
+ triggers: ["looked", "appeared", "seemed", "body language", "eye contact"],
+ mapping: {
+   "looked tired": "appeared fatigued",
+   "seemed nervous": "exhibited observable anxiety",
+   "good eye contact": "maintained appropriate eye contact",
+   "no eye contact": "demonstrated limited eye contact",
+   "fidgeting": "displayed psychomotor agitation",
+   "slumped": "presented with closed body posture",
+   "arms crossed": "maintained defensive posturing"
+      }
+    },
+
+ complete_examples: [
+   {
+     voice: "Client seemed anxious, about 7 out of 10, said he's been clean for 30 days",
+     output: "Client presented with anxiety symptoms, self-reporting 7/10 severity on subjective
+scale. Stated he has maintained 30 consecutive days of sobriety. Actively engaged in discussion
+of recovery progress."
+   },
+   {
+     voice: "She was in a good mood, very engaged, 60 days sober",
+     output: "Client presented with euthymic mood and bright affect. Actively engaged throughout
+session, demonstrating openness to therapeutic interventions. Reported 60 consecutive days
+abstinent from all substances."
+   }
+ ]
+}
+
+
+3. INTERVENTIONS Section
+javascript
+const INTERVENTIONS_RULES = {
+  // What the counselor did during session
+
+    primary_triggers: [
+      "worked on", "discussed", "talked about", "went over", "practiced",
+      "taught", "showed", "explained", "reviewed", "processed", "explored",
+      "addressed", "focused on", "implemented", "utilized", "facilitated"
+    ],
+
+    therapy_type_mapping: {
+     triggers: ["CBT", "DBT", "MI", "motivational", "cognitive", "behavioral"],
+     mapping: {
+       "CBT": "Implemented Cognitive Behavioral Therapy techniques",
+       "cognitive": "Utilized cognitive restructuring interventions",
+       "behavioral": "Implemented behavioral modification strategies",
+       "DBT": "Applied Dialectical Behavior Therapy skills",
+       "MI": "Utilized Motivational Interviewing techniques",
+       "motivational interviewing": "Engaged in Motivational Interviewing",
+       "12-step": "Facilitated 12-step recovery principles",
+       "mindfulness": "Implemented mindfulness-based interventions",
+       "trauma": "Utilized trauma-informed interventions"
+     }
+},
+
+specific_techniques: {
+  triggers: ["breathing", "relaxation", "coping", "trigger", "craving"],
+  mapping: {
+    "breathing": "taught diaphragmatic breathing techniques",
+    "breathing exercises": "practiced controlled breathing exercises",
+    "relaxation": "implemented progressive muscle relaxation",
+    "coping skills": "identified and practiced coping strategies",
+    "triggers": "conducted trigger identification exercise",
+    "cravings": "addressed craving management techniques",
+    "thought stopping": "taught thought stopping techniques",
+    "grounding": "practiced 5-4-3-2-1 grounding technique",
+    "HALT": "reviewed HALT (Hungry, Angry, Lonely, Tired) assessment",
+    "urge surfing": "taught urge surfing technique"
+  }
+},
+
+skill_teaching: {
+  triggers: ["taught", "showed", "demonstrated", "educated", "explained"],
+  mapping: {
+    "taught": "provided psychoeducation regarding",
+    "showed how": "demonstrated technique for",
+    "explained": "provided education about",
+    "went over": "reviewed and reinforced",
+    "practiced": "engaged in skill rehearsal for"
+  }
+},
+
+asam_dimension_mapping: {
+  // Automatically add ASAM dimension based on intervention
+  intervention_to_dimension: {
+    "withdrawal": "Dimension 1 (Acute Intoxication/Withdrawal)",
+    "medical": "Dimension 2 (Biomedical Conditions)",
+    "mental health": "Dimension 3 (Emotional/Behavioral)",
+    "motivation": "Dimension 4 (Readiness to Change)",
+    "relapse": "Dimension 5 (Relapse Potential)",
+    "environment": "Dimension 6 (Recovery Environment)",
+    "family": "Dimension 6 (Recovery Environment)",
+    "triggers": "Dimension 5 (Relapse Potential)",
+    "cravings": "Dimension 5 (Relapse Potential)"
+  }
+},
+    homework_assignments: {
+      triggers: ["homework", "assigned", "practice", "journal", "worksheet"],
+      mapping: {
+        "homework": "Assigned therapeutic homework:",
+        "journal": "Assigned daily journaling exercise",
+        "worksheet": "Provided worksheet for completion",
+        "practice": "Instructed to practice",
+        "meetings": "Directed to attend support meetings",
+        "call sponsor": "Encouraged to contact 12-step sponsor"
+      }
+    },
+
+ complete_examples: [
+   {
+     voice: "We worked on breathing exercises and talked about triggers",
+     output: "Implemented anxiety management interventions including diaphragmatic breathing
+techniques. Conducted trigger identification exercise addressing Dimension 5 (Relapse
+Potential). Client actively participated in creating personalized trigger response plan."
+   },
+   {
+     voice: "Did CBT, discussed negative thoughts, gave homework",
+     output: "Implemented Cognitive Behavioral Therapy techniques focusing on cognitive
+restructuring. Identified and challenged negative automatic thoughts related to substance use.
+Assigned thought record homework to monitor cognitive patterns between sessions."
+   }
+ ]
+}
+
+
+4. PROGRESS Section
+javascript
+const PROGRESS_RULES = {
+  // Measurable progress toward treatment goals
+
+    primary_triggers: [
+      "progress", "improved", "better", "worse", "same", "maintained",
+      "declined", "days", "sober", "clean", "using", "relapsed",
+      "goal", "working toward", "achieved", "meeting"
+    ],
+
+    sobriety_tracking: {
+     triggers: ["days", "weeks", "months", "sober", "clean", "abstinent"],
+     mapping: {
+       "X days clean": "Client demonstrating progress with [X] consecutive days abstinent",
+      "X days sober": "Maintaining sobriety for [X] consecutive days",
+      "X weeks clean": "Client reports [X*7] days of continuous sobriety",
+      "1 month sober": "Achieved 30-day sobriety milestone",
+      "relapsed": "Client experienced return to use after [previous days] of sobriety",
+      "still using": "Client continues active substance use",
+      "no use": "Maintained abstinence since last session"
+  }
+},
+
+goal_references: {
+  // Must reference treatment plan goals
+  triggers: ["goal", "objective", "working on"],
+  template: "Progress toward Goal #[NUMBER] ([GOAL_DESCRIPTION]):",
+  mapping: {
+    "sobriety": "Goal #1 (Maintain Sobriety)",
+    "anxiety": "Goal #2 (Reduce Anxiety Symptoms)",
+    "depression": "Goal #3 (Improve Mood Stability)",
+    "triggers": "Goal #4 (Identify and Manage Triggers)",
+    "support": "Goal #5 (Build Recovery Support Network)",
+    "coping": "Goal #6 (Develop Healthy Coping Skills)"
+  }
+},
+
+progress_indicators: {
+  triggers: ["better", "worse", "improved", "declined", "same"],
+  mapping: {
+    "doing better": "demonstrating improvement",
+    "getting better": "showing positive progress",
+    "doing worse": "experiencing decline",
+    "getting worse": "demonstrating regression",
+    "about the same": "maintaining baseline",
+    "no change": "status unchanged",
+    "improved": "measurable improvement noted",
+    "struggling": "experiencing ongoing challenges"
+  }
+},
+
+attendance_tracking: {
+ triggers: ["attended", "missed", "showed up", "no-show"],
+ mapping: {
+   "attended all": "100% attendance at scheduled sessions",
+   "missed one": "Attended all but one scheduled session",
+   "been coming": "Consistent program attendance",
+   "no-shows": "Multiple unexcused absences noted",
+       "late": "Arrived late to session"
+   }
+ },
+
+ meeting_attendance: {
+   triggers: ["meetings", "AA", "NA", "support group"],
+   mapping: {
+     "X meetings": "Attended [X] support meetings as assigned",
+     "went to AA": "Participated in AA meetings",
+     "no meetings": "Did not attend recommended support meetings",
+     "sponsor": "Maintaining contact with 12-step sponsor"
+   }
+ },
+
+ testing_results: {
+   triggers: ["UA", "drug test", "breathalyzer", "tested"],
+   mapping: {
+     "negative UA": "Negative urinalysis confirms reported sobriety",
+     "positive UA": "Positive urinalysis for [substance]",
+     "clean drug test": "Drug screening results negative",
+     "refused test": "Declined to provide specimen for testing"
+   }
+ },
+
+ dimension_risk_changes: {
+   triggers: ["risk", "dimension", "increased", "decreased"],
+   mapping: {
+     "less risk": "Risk level decreased",
+     "more stable": "Dimension 3 risk reduced from 3 to 2",
+     "higher risk": "Dimension 5 risk increased to level 3",
+     "cravings worse": "Dimension 5 (Relapse Potential) risk elevated"
+   }
+ },
+
+  complete_examples: [
+   {
+     voice: "30 days clean, doing better, attended all groups",
+     output: "Progress toward Goal #1 (Maintain Sobriety): Client demonstrating significant
+progress with 30 consecutive days abstinent, verified by negative UA. Maintained 100%
+attendance at all scheduled IOP sessions. Dimension 5 (Relapse Potential) risk decreased from
+level 3 to level 2."
+   },
+   {
+     voice: "Struggling with cravings but no use, went to 3 meetings",
+      output: "Progress toward Goal #1 (Maintain Sobriety): Client maintaining abstinence despite
+increased cravings. Attended 3 support meetings as recommended. Dimension 5 (Relapse
+Potential) remains at level 3 due to ongoing craving intensity."
+    }
+  ]
+}
+
+
+5. PLAN Section
+javascript
+const PLAN_RULES = {
+  // What happens next - future focused
+
+    primary_triggers: [
+      "next", "continue", "will", "plan", "homework", "assign",
+      "focus on", "work on", "follow up", "refer", "schedule"
+    ],
+
+    session_frequency: {
+      triggers: ["weekly", "twice", "daily", "continue", "increase", "decrease"],
+      mapping: {
+        "weekly": "Continue weekly individual sessions",
+        "twice a week": "Maintain twice-weekly session frequency",
+        "daily": "Continue daily IOP programming",
+        "increase": "Increase session frequency to",
+        "decrease": "Reduce session frequency to",
+        "same schedule": "Maintain current session schedule"
+      }
+    },
+
+    next_session_focus: {
+      triggers: ["next time", "next session", "tomorrow", "next week"],
+      mapping: {
+        "work on": "Next session will focus on",
+        "address": "Will address in upcoming session",
+        "continue": "Continue working on",
+        "review": "Review progress on",
+        "process": "Process recent events regarding"
+      }
+    },
+
+    homework_assignments: {
+     triggers: ["homework", "assignment", "practice", "complete"],
+     mapping: {
+      "journal": "Client to maintain daily recovery journal",
+      "worksheet": "Complete assigned worksheet on",
+      "thought log": "Document thoughts using thought record",
+      "triggers": "Identify and document trigger situations",
+      "meetings": "Attend minimum [X] support meetings",
+      "sponsor": "Make daily contact with sponsor",
+      "practice": "Practice learned skills daily",
+      "meditation": "Engage in daily meditation practice",
+      "exercise": "Implement exercise routine as discussed"
+  }
+},
+
+referrals: {
+  triggers: ["refer", "appointment", "psychiatrist", "doctor", "evaluation"],
+  mapping: {
+    "psychiatrist": "Referred to psychiatric evaluation",
+    "medical": "Referred to medical provider for",
+    "psych eval": "Psychiatric evaluation scheduled",
+    "group": "Referred to specialized group for",
+    "sponsor": "Encouraged to obtain 12-step sponsor",
+    "housing": "Referred to housing support services"
+  }
+},
+
+level_of_care: {
+  triggers: ["step down", "step up", "discharge", "transition"],
+  mapping: {
+    "step down": "Consider transition to lower level of care if progress continues",
+    "step up": "May require higher level of care if symptoms persist",
+    "discharge": "Preparing for discharge planning",
+    "maintain level": "Continue at current ASAM level",
+    "graduate": "Approaching graduation from program"
+  }
+},
+
+specific_interventions: {
+ triggers: ["CBT", "DBT", "trauma", "family", "relapse prevention"],
+ mapping: {
+   "CBT": "Continue Cognitive Behavioral Therapy interventions",
+   "DBT": "Implement DBT skills training",
+   "trauma": "Begin trauma-focused therapy using",
+   "family": "Schedule family therapy session",
+   "relapse": "Intensify relapse prevention planning"
+ }
+    },
+
+ complete_examples: [
+   {
+     voice: "Continue weekly, homework is thought log, focus on triggers next time",
+     output: "Continue weekly individual sessions at current ASAM 2.1 level. Next session will
+focus on trigger identification and management strategies addressing Dimension 5. Client to
+complete thought log documenting trigger situations and emotional responses before next
+session scheduled [DATE]."
+   },
+   {
+     voice: "See tomorrow, go to 3 meetings, call sponsor daily",
+     output: "Continue daily IOP programming. Client to attend minimum 3 support meetings
+before next session. Instructed to make daily contact with sponsor for accountability and
+support. Will review compliance and progress in tomorrow's session."
+   }
+ ]
+}
+
+
+Master Processing Logic for John
+javascript
+// Main function to process voice input into 5 sections
+function processVoiceToSections(voiceTranscript) {
+
+    // Step 1: Apply clinical language mappings first
+    const enhancedText = applyClinicalMappings(voiceTranscript);
+
+    // Step 2: Initialize all 5 sections
+    const sections = {
+      "SERVICE PROVIDED": "",
+      "CLIENT RESPONSE": "",
+      "INTERVENTIONS": "",
+      "PROGRESS": "",
+      "PLAN": ""
+    };
+
+    // Step 3: Split enhanced text into sentences
+    const sentences = enhancedText.match(/[^.!?]+[.!?]+/g) || [];
+
+    // Step 4: Classify each sentence into appropriate section
+    sentences.forEach(sentence => {
+      const classification = classifySentence(sentence.toLowerCase());
+      if (sections[classification]) {
+        sections[classification] += sentence + " ";
+      }
+    });
+
+  // Step 5: Fill in any missing sections with defaults
+  sections["SERVICE PROVIDED"] = sections["SERVICE PROVIDED"] ||
+    "Provided 50-minute individual substance use disorder counseling session at ASAM Level 2.1
+intensive outpatient program via in-person service.";
+
+    // Step 6: Ensure all sections meet minimum requirements
+    validateAndEnhanceSections(sections);
+
+    return sections;
+}
+
+// Helper function to classify sentences
+function classifySentence(sentence) {
+  // Priority order matters - check in this sequence
+
+    // 1. Check for PLAN indicators (future-focused)
+    if (hasAnyTrigger(sentence, PLAN_RULES.primary_triggers)) {
+      return "PLAN";
+    }
+
+    // 2. Check for PROGRESS indicators (measurable outcomes)
+    if (hasAnyTrigger(sentence, PROGRESS_RULES.primary_triggers)) {
+      return "PROGRESS";
+    }
+
+    // 3. Check for INTERVENTIONS (what counselor did)
+    if (hasAnyTrigger(sentence, INTERVENTIONS_RULES.primary_triggers)) {
+      return "INTERVENTIONS";
+    }
+
+    // 4. Check for CLIENT RESPONSE (how client presented)
+    if (hasAnyTrigger(sentence, CLIENT_RESPONSE_RULES.primary_triggers)) {
+      return "CLIENT RESPONSE";
+    }
+
+    // 5. Default to CLIENT RESPONSE if unclear
+    return "CLIENT RESPONSE";
+}
+function hasAnyTrigger(text, triggers) {
+ return triggers.some(trigger => text.includes(trigger));
+}
+
+
+Quick Reference Card for John
+javascript
+// VOICE INPUT → SECTION MAPPING CHEAT SHEET
+
+const QUICK_MAPPING = {
+ // What counselor says → Which section it goes to
+
+    // CLIENT RESPONSE - How the client was
+    "client seemed/was/appeared" → "CLIENT RESPONSE",
+    "mood/affect/emotional state" → "CLIENT RESPONSE",
+    "said/stated/reported" → "CLIENT RESPONSE",
+    "X days sober/clean" → "CLIENT RESPONSE" (also copied to PROGRESS),
+
+    // INTERVENTIONS - What counselor did
+    "worked on/discussed/taught" → "INTERVENTIONS",
+    "CBT/DBT/MI/therapy type" → "INTERVENTIONS",
+    "practiced/role-played" → "INTERVENTIONS",
+    "gave homework/assigned" → "INTERVENTIONS",
+
+    // PROGRESS - Measurable outcomes
+    "doing better/worse" → "PROGRESS",
+    "improved/declined" → "PROGRESS",
+    "attended X meetings" → "PROGRESS",
+    "Goal #X" → "PROGRESS",
+
+    // PLAN - What's next
+    "next time/next session" → "PLAN",
+    "will/going to" → "PLAN",
+    "continue/maintain" → "PLAN",
+    "homework to do" → "PLAN",
+
+    // SERVICE PROVIDED - Usually template
+    "X minutes" → "SERVICE PROVIDED",
+    "individual/group" → "SERVICE PROVIDED",
+    "telehealth/in-person" → "SERVICE PROVIDED"
+};
+

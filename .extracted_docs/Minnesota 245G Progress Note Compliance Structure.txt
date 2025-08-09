@@ -1,0 +1,684 @@
+Minnesota 245G Progress Note
+Compliance Structure
+Complete Requirements for SUD Progress Notes
+
+
+Minnesota 245G Progress Note
+Requirements - Plain Text Version & Java
+script
+The Five Required Sections (Must Have All Five)
+1. SERVICE PROVIDED
+
+What this section needs:
+
+   ●​   Type of service (individual, group, or family therapy)
+   ●​   Exact duration in minutes (not "45-50 minutes" but "50 minutes")
+   ●​   Where it happened (in-person, telehealth, clinic, home)
+   ●​   ASAM level of care (like "Level 2.1 IOP" or "Level 1.0 outpatient")
+
+Good example: "Provided 50-minute individual substance use disorder counseling session at
+ASAM Level 2.1 intensive outpatient program via in-person service"
+
+Bad example: "Had a session with client" (missing everything required)
+
+
+
+
+2. CLIENT RESPONSE
+
+What this section needs:
+
+   ●​   How engaged were they? (active, passive, resistant)
+   ●​   What did they actually say? (use direct quotes)
+   ●​   What did you observe? (body language, mood, appearance)
+   ●​   Did they admit to using or deny it?
+   ●​   How did they react to what you did in session?
+Good example: "Client presented with stable mood and clear thought process, actively
+engaged in discussion of triggers, stating 'I recognized three high-risk situations this week and
+used coping skills.' Demonstrated understanding of relapse prevention concepts by identifying
+personal warning signs. Reported 7 days of continuous sobriety verified by negative UA.
+Exhibited appropriate affect when discussing recovery challenges."
+
+Never write:
+
+   ●​ "Client seems to be doing better" (too vague)
+   ●​ "Probably understands the concepts" (not observable)
+   ●​ "Maybe ready for change" (speculation)
+
+
+
+
+3. INTERVENTIONS
+
+What this section needs:
+
+   ●​   Name the specific therapy you used (CBT, DBT, Motivational Interviewing, etc.)
+   ●​   What techniques or exercises you actually did
+   ●​   Which ASAM dimension you addressed (1-6)
+   ●​   What skills you taught
+   ●​   What homework you gave them
+
+Approved interventions to use:
+
+   ●​   Motivational Interviewing (MI)
+   ●​   Cognitive Behavioral Therapy (CBT)
+   ●​   Dialectical Behavior Therapy (DBT)
+   ●​   12-Step Facilitation
+   ●​   Relapse Prevention
+   ●​   Seeking Safety
+   ●​   Mindfulness-Based Relapse Prevention
+
+Good example: "Implemented Cognitive Behavioral Therapy techniques targeting Dimension 4
+(Readiness to Change) including cost-benefit analysis of continued use versus recovery. Utilized
+motivational interviewing to explore ambivalence regarding treatment engagement. Taught
+HALT (Hungry, Angry, Lonely, Tired) identification skills for Dimension 5 (Relapse Potential).
+Assigned thought record homework to identify cognitive distortions related to substance use."
+
+Bad example: "Did therapy and talked about recovery" (too generic)
+
+
+
+
+4. PROGRESS
+What this section needs:
+
+   ●​   Reference a specific treatment plan goal (Goal #1, Goal #2, etc.)
+   ●​   Say if they're getting better, staying the same, or getting worse
+   ●​   Include numbers (days sober, meeting attendance, scores)
+   ●​   Mention ASAM dimension changes if any
+   ●​   Include test results if you have them (UA results, PHQ-9 scores)
+
+Things you can measure:
+
+   ●​   Days sober/clean
+   ●​   Number of meetings attended
+   ●​   Homework completed (yes/no)
+   ●​   How often they used coping skills
+   ●​   Taking medications as prescribed
+   ●​   Attendance percentage
+   ●​   Drug test results
+   ●​   Depression/anxiety scores
+
+Good example: "Client demonstrating progress toward Goal #1 (maintain sobriety) with 14
+consecutive days abstinent, verified by negative UA collected today. Dimension 5 (Relapse
+Potential) risk decreased from 3 to 2 based on increased coping skill utilization reported in 4 of 5
+high-risk situations this week. Attended 3 of 3 scheduled IOP sessions (100% attendance)."
+
+
+
+
+5. PLAN
+
+What this section needs:
+
+   ●​   What you'll focus on next session
+   ●​   Homework they need to do
+   ●​   Any referrals you're making
+   ●​   Changes to the treatment plan
+   ●​   How often they'll keep coming
+
+Good example: "Continue weekly individual sessions at current ASAM 2.1 level focusing on
+relapse prevention and Dimension 5 risk reduction. Client to complete trigger identification
+worksheet and attend minimum 3 AA meetings before next session on Tuesday. Will address
+trauma history using Seeking Safety curriculum beginning next session. Referred to psychiatric
+evaluation for medication assessment, appointment scheduled 8/15."
+
+Bad example: "Continue treatment" (way too vague)
+Important Rules to Remember
+Timing Requirements
+
+   ●​ Regular sessions: Document within 7 days
+   ●​ Crisis or significant events: Document within 24 hours
+   ●​ If you're late: Write "Late Entry" and explain why
+
+Signature Requirements
+
+You must include:
+
+   ●​   Your full name
+   ●​   Your credentials (LADC, LICSW, etc.)
+   ●​   Your job title
+   ●​   Date you're signing
+   ●​   Time if signing same day as service
+
+Example: "John Smith, LADC, Chemical Dependency Counselor, 08/03/2024 14:30"
+
+If you're not licensed, your supervisor must also sign within 7 days.
+
+Language Rules
+
+Never use these terms:
+
+   ●​   "Drug addict" → Say "person with substance use disorder"
+   ●​   "Clean/dirty" → Say "positive/negative UA" or "in recovery/actively using"
+   ●​   "Drug abuse" → Say "substance use"
+   ●​   "Alcoholic" → Say "person with alcohol use disorder"
+
+Always include:
+
+   ●​   At least one ASAM dimension (1-6)
+   ●​   At least one treatment goal reference
+   ●​   At least one number/measurement
+   ●​   Person-first language
+
+
+
+
+Quick Template for Speed
+If you need to write a note fast, use this format:
+SERVICE PROVIDED: [Type] [Minutes] minute [individual/group] session at ASAM Level
+[number]
+
+CLIENT RESPONSE: Client [engaged/resisted], stated "[quote]", demonstrated [behavior],
+reported [#] days sober
+
+INTERVENTIONS: Implemented [CBT/MI/DBT] addressing Dimension [#], taught [skill],
+assigned [homework]
+
+PROGRESS: Progress toward Goal #[number]: [improved/maintained/declined], [specific
+metric], Dimension [#] risk [changed/stable]
+
+PLAN: Continue [frequency] sessions, focus on [topic], client will [assignment], next session
+[date]
+
+
+
+
+The Bottom Line
+Every single progress note needs:
+
+   1.​ All 5 sections (no exceptions)
+   2.​ At least one ASAM dimension mentioned
+   3.​ At least one measurable number
+   4.​ At least one treatment goal reference
+   5.​ Professional language (no slang or judgments)
+   6.​ Your full signature with credentials
+
+If you have these 6 things, your note is compliant with Minnesota 245G requirements.
+
+
+
+javascript
+
+// 245G-Compliant Progress Note Structure
+
+const MINNESOTA_245G_PROGRESS_NOTE = {
+
+
+
+ "SERVICE PROVIDED": {
+
+  required: true,
+
+  format: "Specific service type with exact duration and modality",
+  minLength: 50,
+
+  maxLength: 200,
+
+  mustInclude: [
+
+      "Service type (individual, group, family)",
+
+      "Duration in minutes",
+
+      "Service location/modality (in-person, telehealth)",
+
+      "ASAM level of care being provided"
+
+  ],
+
+  examples: [
+
+    "Provided 50-minute individual substance use disorder counseling session at ASAM Level
+2.1 intensive outpatient program via in-person service",
+
+    "Facilitated 90-minute group therapy session focusing on relapse prevention at ASAM Level
+1.0 outpatient treatment in clinic setting",
+
+   "Conducted 45-minute family therapy session addressing recovery environment (ASAM
+Dimension 6) via telehealth platform"
+
+  ],
+
+  validation: "Must specify exact minutes (not time ranges) and include ASAM level reference"
+
+ },
+
+
+
+ "CLIENT RESPONSE": {
+
+  required: true,
+
+  format: "Observable behavioral responses to each intervention with specific details",
+
+  minLength: 100,
+
+  maxLength: 500,
+
+  mustInclude: [
+
+      "Client's engagement level (active, passive, resistant)",
+      "Specific verbal responses or statements made",
+
+      "Observable affect and behavioral presentation",
+
+      "Any substance use disclosure or denial",
+
+      "Response to specific interventions used"
+
+  ],
+
+  examples: [
+
+     "Client presented with stable mood and clear thought process, actively engaged in
+discussion of triggers, stating 'I recognized three high-risk situations this week and used coping
+skills.' Demonstrated understanding of relapse prevention concepts by identifying personal
+warning signs. Reported 7 days of continuous sobriety verified by negative UA. Exhibited
+appropriate affect when discussing recovery challenges.",
+
+    "Client appeared withdrawn initially, demonstrating minimal eye contact and closed body
+posture. Engagement improved following motivational interviewing techniques, eventually
+disclosing ambivalence about recovery: 'Part of me wants to stay clean but I miss the escape.'
+Became tearful when discussing family impact. Participated in breathing exercise with
+observable reduction in anxiety symptoms."
+
+  ],
+
+  prohibitedTerms: [
+
+      "Appears to be",
+
+      "Seems like",
+
+      "Probably",
+
+      "Maybe"
+
+  ],
+
+  requiredObjectivity: "Use only observable behaviors and direct quotes, no interpretations"
+
+ },
+
+
+
+ "INTERVENTIONS": {
+
+  required: true,
+  format: "Specific evidence-based interventions with connection to ASAM dimensions",
+
+  minLength: 100,
+
+  maxLength: 400,
+
+  mustInclude: [
+
+   "Named evidence-based practice used",
+
+   "Specific techniques or exercises implemented",
+
+   "ASAM dimension(s) addressed",
+
+   "Skills taught or reinforced",
+
+   "Homework or between-session assignments given"
+
+  ],
+
+  acceptableInterventions: [
+
+   "Motivational Interviewing (MI)",
+
+   "Cognitive Behavioral Therapy (CBT)",
+
+   "Dialectical Behavior Therapy (DBT)",
+
+   "12-Step Facilitation",
+
+   "Relapse Prevention",
+
+   "Contingency Management",
+
+   "Matrix Model interventions",
+
+   "Seeking Safety",
+
+   "Mindfulness-Based Relapse Prevention"
+
+  ],
+
+  examples: [
+
+    "Implemented Cognitive Behavioral Therapy techniques targeting Dimension 4 (Readiness
+to Change) including cost-benefit analysis of continued use versus recovery. Utilized
+motivational interviewing to explore ambivalence regarding treatment engagement. Taught
+HALT (Hungry, Angry, Lonely, Tired) identification skills for Dimension 5 (Relapse Potential).
+Assigned thought record homework to identify cognitive distortions related to substance use.
+Reviewed and practiced refusal skills through role-play exercise.",
+
+    "Facilitated relapse prevention planning addressing Dimension 5, identifying three specific
+triggers: workplace stress, family conflict, and social isolation. Implemented DBT distress
+tolerance skills including TIPP technique for managing cravings. Addressed Dimension 6
+(Recovery Environment) through development of sober support network map. Assigned daily
+recovery journal and attendance at two AA meetings before next session."
+
+  ],
+
+  validation: "Must name specific intervention, not generic 'counseling' or 'therapy'"
+
+ },
+
+
+
+ "PROGRESS": {
+
+  required: true,
+
+   format: "Measurable progress indicators toward treatment plan goals with ASAM dimension
+reference",
+
+  minLength: 75,
+
+  maxLength: 300,
+
+  mustInclude: [
+
+      "Reference to specific treatment plan goal",
+
+      "Measurable indicator of progress (improved, maintained, declined)",
+
+      "ASAM dimension risk rating changes if applicable",
+
+      "Days of sobriety or use patterns",
+
+      "Objective measures when available (screening scores, UA results)"
+
+  ],
+
+  progressIndicators: [
+
+      "Number of days abstinent",
+
+      "Attendance at support meetings",
+      "Completion of assignments",
+
+      "Use of coping skills (frequency)",
+
+      "Medication compliance",
+
+      "Program attendance percentage",
+
+      "UA/breathalyzer results",
+
+      "ASAM dimension risk rating changes",
+
+      "Screening tool score changes (GAIN-SS, PHQ-9, GAD-7)"
+
+  ],
+
+  examples: [
+
+    "Client demonstrating progress toward Goal #1 (maintain sobriety) with 14 consecutive days
+abstinent, verified by negative UA collected today. Dimension 5 (Relapse Potential) risk
+decreased from 3 to 2 based on increased coping skill utilization reported in 4 of 5 high-risk
+situations this week. Attended 3 of 3 scheduled IOP sessions (100% attendance). PHQ-9 score
+decreased from 15 to 11, indicating mild improvement in depressive symptoms.",
+
+    "Limited progress toward Goal #2 (develop sober support network) with client attending 1 of
+recommended 3 support meetings. Dimension 6 (Recovery Environment) risk remains at level 3
+due to continued residence with actively using partner. Maintained sobriety for 5 days followed
+by one-day relapse as reported. Successfully implemented taught coping skills in 2 of 6
+identified trigger situations."
+
+  ],
+
+  requiredTimeframe: "Progress must be measured against specific timeframe (this week, past
+7 days, since last session)"
+
+ },
+
+
+
+ "PLAN": {
+
+  required: true,
+
+  format: "Specific next steps with connection to treatment goals and continuing care",
+
+  minLength: 75,
+
+  maxLength: 300,
+  mustInclude: [
+
+      "Next session focus areas",
+
+      "Homework or between-session assignments",
+
+      "Referrals or additional services needed",
+
+      "Any treatment plan modifications",
+
+      "Frequency of services continuing"
+
+  ],
+
+  examples: [
+
+   "Continue weekly individual sessions at current ASAM 2.1 level focusing on relapse
+prevention and Dimension 5 risk reduction. Client to complete trigger identification worksheet
+and attend minimum 3 AA meetings before next session on [date]. Will address trauma history
+(Dimension 3) using Seeking Safety curriculum beginning next session. Referred to psychiatric
+evaluation for medication assessment, appointment scheduled [date]. Review treatment plan
+next session for potential step-down to Level 1.0 if maintains sobriety.",
+
+    "Maintain twice-weekly IOP attendance with focus on early recovery skills. Next individual
+session will address family dynamics affecting Dimension 6 using family mapping exercise.
+Client assigned to practice HALT check-ins 3x daily and document in recovery journal. Continue
+coordinating with probation officer regarding compliance. Consider increasing to ASAM 2.5 if
+positive UA or missed sessions occur."
+
+  ],
+
+  validation: "Must be specific and actionable, not vague ('continue treatment')"
+
+ },
+
+
+
+ // Additional 245G-Specific Requirements
+
+ "DOCUMENTATION_TIMEFRAME": {
+
+  regularService: "Must be documented within 7 days of service",
+
+  significantEvent: "Must be documented within 24 hours",
+
+  lateEntryRequired: "If documented late, must include 'Late Entry' label with explanation"
+
+ },
+ "SIGNATURE_REQUIREMENTS": {
+
+  required: [
+
+      "Full name",
+
+      "Credentials",
+
+      "Job title/position",
+
+      "Date of signature",
+
+      "Time of signature if same-day documentation"
+
+  ],
+
+   supervisorRequired: "If documented by unlicensed staff, supervisor co-signature required
+within 7 days",
+
+  format: "John Smith, LADC, Chemical Dependency Counselor, 08/03/2024 14:30"
+
+ },
+
+
+
+ "MANDATORY_CONNECTIONS": {
+
+  treatmentPlanGoals: "Each note must reference at least one active treatment plan goal",
+
+  asamDimensions: "Must reference at least one ASAM dimension by number and name",
+
+  measurableOutcomes: "Must include at least one quantifiable measure of progress"
+
+ },
+
+
+
+ "PROHIBITED_DOCUMENTATION": {
+
+  cannotInclude: [
+
+      "Personal opinions without clinical basis",
+
+      "Judgmental language",
+
+      "Guarantees of outcome",
+         "Non-person-first language",
+
+         "Stigmatizing terms"
+
+     ],
+
+     avoidPhrases: [
+
+         "Drug addict" → Use "person with substance use disorder",
+
+         "Clean/dirty" → Use "positive/negative UA" or "in recovery/actively using",
+
+         "Drug abuse" → Use "substance use",
+
+         "Alcoholic" → Use "person with alcohol use disorder"
+
+     ]
+
+ }
+
+};
+
+
+
+// Validation Function for 245G Compliance
+
+function validate245GProgressNote(note) {
+
+ const errors = [];
+
+
+
+ // Check all required sections exist
+
+ const requiredSections = [
+
+     'SERVICE PROVIDED',
+
+     'CLIENT RESPONSE',
+
+     'INTERVENTIONS',
+
+     'PROGRESS',
+
+     'PLAN'
+
+ ];
+ requiredSections.forEach(section => {
+
+  if (!note[section] || note[section].length <
+MINNESOTA_245G_PROGRESS_NOTE[section].minLength) {
+
+   errors.push(`${section} is missing or too short (minimum
+${MINNESOTA_245G_PROGRESS_NOTE[section].minLength} characters)`);
+
+     }
+
+ });
+
+
+
+ // Check for ASAM dimension reference
+
+ const hasASAMReference = /dimension [1-6]|asam/i.test(JSON.stringify(note));
+
+ if (!hasASAMReference) {
+
+     errors.push("Must reference at least one ASAM dimension");
+
+ }
+
+
+
+ // Check for measurable progress indicator
+
+ const hasMetric = /\d+ days?|\d+%|score|negative|positive|attended
+\d+/i.test(note.PROGRESS);
+
+ if (!hasMetric) {
+
+     errors.push("Progress section must include measurable indicator");
+
+ }
+
+
+
+ // Check for treatment plan goal reference
+
+ const hasGoalReference = /goal #?\d+|objective|treatment plan/i.test(note.PROGRESS);
+
+ if (!hasGoalReference) {
+
+     errors.push("Must reference specific treatment plan goal");
+    }
+
+
+
+    return {
+
+        isValid: errors.length === 0,
+
+        errors: errors,
+
+        completeness: `${(5 - errors.length) / 5 * 100}%`
+
+    };
+
+}
+
+
+Quick Reference Card for Developers
+javascript
+
+// MINIMUM VIABLE 245G PROGRESS NOTE
+
+const QUICK_245G_TEMPLATE = {
+
+    // Every note MUST have these exact 5 sections:
+
+ "SERVICE PROVIDED": "[Type] [Duration] minute [individual/group] session at ASAM Level
+[X.X]",
+
+
+
+ "CLIENT RESPONSE": "Client [engaged/resisted], stated '[quote]', demonstrated [behavior],
+reported [days] sober",
+
+
+
+ "INTERVENTIONS": "Implemented [CBT/MI/DBT] addressing Dimension [#], taught [skill],
+assigned [homework]",
+
+
+
+ "PROGRESS": "Progress toward Goal #[X]: [improved/maintained/declined], [specific metric],
+Dimension [#] risk [changed/stable]",
+ "PLAN": "Continue [frequency] sessions, focus on [topic], client will [assignment], next session
+[date]"
+

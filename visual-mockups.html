@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindFlow Minimal UI - Visual Mockups</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f8fafc;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .mockup-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e5e7eb;
+        }
+
+        .mockup-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mockup-description {
+            color: #6b7280;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .mockup-visual {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            background: #fafbfc;
+            position: relative;
+            min-height: 120px;
+        }
+
+        /* Simulated Procentive textarea */
+        .procentive-textarea {
+            width: 100%;
+            height: 80px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 8px;
+            font-family: inherit;
+            font-size: 13px;
+            background: white;
+            position: relative;
+            resize: none;
+        }
+
+        /* State 1: Dormant Indicator */
+        .mindflow-indicator {
+            width: 8px;
+            height: 8px;
+            background: #6B46C1;
+            opacity: 0.4;
+            border-radius: 50%;
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            z-index: 998;
+            transition: opacity 200ms ease-out;
+        }
+
+        .mindflow-indicator:hover {
+            opacity: 0.7;
+        }
+
+        /* State 2: Hover/Ready Toolbar */
+        .mindflow-toolbar {
+            width: 120px;
+            height: 32px;
+            background: #FFFFFF;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: absolute;
+            top: -40px;
+            right: 0px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            gap: 4px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .mindflow-btn {
+            width: 48px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 150ms ease-out;
+        }
+
+        .mindflow-btn:hover {
+            background: #F3F4F6;
+        }
+
+        /* State 3: Recording */
+        .recording-toolbar {
+            width: 120px;
+            height: 32px;
+            background: #FFFFFF;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: absolute;
+            top: -40px;
+            right: 0px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            gap: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .recording-dot {
+            width: 8px;
+            height: 8px;
+            background: #DC2626;
+            border-radius: 50%;
+            animation: pulse-dot 1500ms ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .recording-timer {
+            font-size: 13px;
+            color: #1F2937;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .recording-textarea {
+            border: 2px solid rgba(220, 38, 38, 0.2) !important;
+        }
+
+        /* State 4: Processing */
+        .mindflow-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: #6B46C1;
+            border-radius: 1px;
+            z-index: 999;
+            width: 75%;
+            transition: width 500ms linear;
+        }
+
+        .processing-textarea {
+            opacity: 0.6;
+        }
+
+        /* State 5: Split Preview */
+        .mindflow-split-preview {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            display: flex;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .split-original {
+            width: 40%;
+            background: #F5F5F5;
+            font-size: 13px;
+            line-height: 1.4;
+            padding: 8px;
+            overflow-y: auto;
+        }
+
+        .split-divider {
+            width: 1px;
+            background: #E5E7EB;
+        }
+
+        .split-enhanced {
+            width: 60%;
+            background: #FFFFFF;
+            font-size: 13px;
+            line-height: 1.4;
+            padding: 8px;
+            overflow-y: auto;
+        }
+
+        .countdown {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            font-size: 11px;
+            color: #9CA3AF;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .highlight-diff {
+            background: rgba(5, 150, 105, 0.2);
+            padding: 1px 2px;
+            border-radius: 2px;
+        }
+
+        /* State 6: Completed */
+        .mindflow-undo {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            font-size: 11px;
+            color: #9CA3AF;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 4px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 1000;
+            border: 1px solid #e5e7eb;
+        }
+
+        .mindflow-undo:hover {
+            color: #6B7280;
+            background: rgba(255, 255, 255, 1);
+        }
+
+        /* Error States */
+        .mindflow-error {
+            position: absolute;
+            top: 36px;
+            right: 0px;
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 11px;
+            color: #DC2626;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            z-index: 1001;
+        }
+
+        .mindflow-success {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(5, 150, 105, 0.1);
+            border: 1px solid rgba(5, 150, 105, 0.2);
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 11px;
+            color: #059669;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            z-index: 1001;
+        }
+
+        /* Success checkmark */
+        .success-checkmark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #059669;
+            z-index: 1002;
+            animation: success-checkmark 300ms ease-out;
+        }
+
+        @keyframes success-checkmark {
+            0% { 
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0);
+            }
+            50% { 
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% { 
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .specs {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #495057;
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+
+        .flow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .flow-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .flow-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .flow-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .flow-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .flow-step:nth-child(1) .flow-icon { background: rgba(107, 70, 193, 0.1); color: #6B46C1; }
+        .flow-step:nth-child(2) .flow-icon { background: rgba(59, 130, 246, 0.1); color: #3B82F6; }
+        .flow-step:nth-child(3) .flow-icon { background: rgba(220, 38, 38, 0.1); color: #DC2626; }
+        .flow-step:nth-child(4) .flow-icon { background: rgba(168, 85, 247, 0.1); color: #A855F7; }
+        .flow-step:nth-child(5) .flow-icon { background: rgba(34, 197, 94, 0.1); color: #22C55E; }
+        .flow-step:nth-child(6) .flow-icon { background: rgba(5, 150, 105, 0.1); color: #059669; }
+
+        .flow-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .flow-arrow {
+            font-size: 20px;
+            color: #9CA3AF;
+            margin: 0 10px;
+        }
+
+        @media (max-width: 768px) {
+            .flow-steps {
+                flex-direction: column;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 MindFlow Minimal UI</h1>
+        <p class="subtitle">Visual Mockups - Grammarly-like Subtle Enhancement</p>
+
+        <!-- Flow Diagram -->
+        <div class="flow-diagram">
+            <h2 class="flow-title">Complete User Flow</h2>
+            <div class="flow-steps">
+                <div class="flow-step">
+                    <div class="flow-icon">●</div>
+                    <span class="flow-label">Dormant</span>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <div class="flow-icon">🎤</div>
+                    <span class="flow-label">Hover/Ready</span>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <div class="flow-icon">⏺</div>
+                    <span class="flow-label">Recording</span>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <div class="flow-icon">⏳</div>
+                    <span class="flow-label">Processing</span>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <div class="flow-icon">📖</div>
+                    <span class="flow-label">Preview</span>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <div class="flow-icon">✅</div>
+                    <span class="flow-label">Complete</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- State Mockups -->
+        <div class="mockup-grid">
+            <!-- State 1: Dormant -->
+            <div class="mockup-card">
+                <h3 class="mockup-title">
+                    <span style="color: #6B46C1;">●</span>
+                    State 1: Dormant
+                </h3>
+                <p class="mockup-description">Default state - 8px purple dot, barely visible until hover</p>
+                <div class="mockup-visual">
+                    <textarea class="procentive-textarea" placeholder="Goals for this session..."></textarea>
+                    <div class="mindflow-indicator"></div>
+                </div>
+                <div class="specs">
+                    Size: 8px × 8px<br>
+                    Position: top: -4px, right: -4px<br>
+                    Color: #6B46C1 at 40% opacity<br>
+                    Hover: 70% opacity
+                </div>
+            </div>
+
+            <!-- State 2: Hover/Ready -->
+            <div class="mockup-card">
+                <h3 class="mockup-title">
+                    <span style="color: #3B82F6;">🎤</span>
+                    State 2: Hover/Ready
+                </h3>
+                <p class="mockup-description">Toolbar appears on hover - Record and Enhance buttons</p>
+                <div class="mockup-visual">
+                    <textarea class="procentive-textarea" placeholder="Goals for this session..."></textarea>
+                    <div class="mindflow-toolbar">
+                        <button class="mindflow-btn">🎤</button>
+                        <button class="mindflow-btn">✨</button>
+                    </div>
+                </div>
+                <div class="specs">
+                    Size: 120px × 32px<br>
+                    Position: top: -40px, right: 0px<br>
+                    Animation: scale(0.8) → scale(1), 150ms<br>
+                    Shadow: 0 2px 8px rgba(0,0,0,0.1)
+                </div>
+            </div>
+
+            <!-- State 3: Recording -->
+            <div class="mockup-card">
+                <h3 class="mockup-title">
+                    <span style="color: #DC2626;">⏺</span>
+                    State 3: Recording Active
+                </h3>
+                <p class="mockup-description">Red pulsing dot, timer, and stop button during recording</p>
+                <div class="mockup-visual">
+                    <textarea class="procentive-textarea recording-textarea" placeholder="Goals for this session..."></textarea>
+                    <div class="recording-toolbar">
+                        <div class="recording-dot"></div>
+                        <span class="recording-timer">0:23</span>
+                        <button class="mindflow-btn">⏹</button>
+                    </div>
+                </div>
+                <div class="specs">
+                    Red dot: 8px × 8px, pulsing every 1.5s<br>
+                    Timer: 13px font, updates every second<br>
+                    Textarea: 2px red border at 20% opacity<br>
+                    Stop button: 24px × 24px
+                </div>
+            </div>
+
+            <!-- State 4: Processing -->
+            <div class="mockup-card">
+                <h3 class="mockup-title">
+                    <span style="color: #A855F7;">⏳</span>
+                    State 4: Processing
+                </h3>
+                <p class="mockup-description">Progress bar animation while AI processes the audio</p>
+                <div class="mockup-visual">
+                    <textarea class="procentive-textarea processing-textarea" placeholder="Goals for this session..."></textarea>
+                    <div class="mindflow-progress"></div>
+                </div>
+                <div class="specs">
+                    Progress bar: 2px height, #6B46C1<br>
+                    Animation: 0% → 100% width in 500ms<br>
+                    Textarea opacity: 60%<br>
+                    Position: top edge of textarea
+                </div>
+            </div>
+
+            <!-- State 5: Split Preview -->
+            <div class="mockup-card">
+                <h3 class="mockup-title">
+                    <span style="color: #22C55E;">📖</span>
+                    State 5: Split Preview
+                </h3>
+                <p class="mockup-description">Side-by-side comparison with auto-accept countdown</p>
+                <div class="mockup-visual">
+                    <textarea class="procentive-textarea" style="opacity: 0;"></textarea>
+                    <div class="mindflow-split-preview">
+                        <div class="split-original">
+                            Client discussed anxiety management strategies.
+                        </div>
+                        <div class="split-divider"></div>
+                        <div class="split-enhanced">
+                            Client actively engaged in discussing <span class="highlight-diff">evidence-based anxiety management strategies, demonstrating insight into triggers and coping mechanisms</span>.
+                        </div>
+                        <div class="countdown">Auto-accepting in 3...</div>
+                    </div>
+                </div>
+                <div class="specs">
+                    Left: 40% width, #F5F5F5 background<br>
+                    Right: 60% width, white background<br>
+                    Divider: 1px #E5E7EB<br>
+                    Differences: green highlight at 20% opacity
+                </div>
+            </div>
+
+            <!-- State 6: Completed -->
+            <div class="mockup-card">
+                <h3 class="mockup-title">
+                    <span style="color: #059669;">✅</span>
+                    State 6: Completed
+                </h3>
+                <p class="mockup-description">Enhanced text with temporary undo option</p>
+                <div class="mockup-visual">
+                    <textarea class="procentive-textarea">Client actively engaged in discussing evidence-based anxiety management strategies, demonstrating significant insight into personal triggers and effective coping mechanisms.</textarea>
+                    <div class="mindflow-undo">↩ undo</div>
+                    <div class="success-checkmark">✓</div>
+                </div>
+                <div class="specs">
+                    Undo link: 11px font, #9CA3AF<br>
+                    Position: bottom: 8px, right: 8px<br>
+                    Visible for 5 seconds, then fade out<br>
+                    Success checkmark: 300ms scale animation
+                </div>
+            </div>
+
+            <!-- Error State 1 -->
+            <div class="mockup-card">
+                <h3 class="mockup-title">
+                    <span style="color: #DC2626;">❌</span>
+                    Error: Recording Failed
+                </h3>
+                <p class="mockup-description">Error message when recording is unclear</p>
+                <div class="mockup-visual">
+                    <textarea class="procentive-textarea" placeholder="Goals for this session..."></textarea>
+                    <div class="mindflow-toolbar">
+                        <button class="mindflow-btn">🎤</button>
+                        <button class="mindflow-btn">✨</button>
+                    </div>
+                    <div class="mindflow-error">Recording unclear - type instead</div>
+                </div>
+                <div class="specs">
+                    Position: top: 36px below toolbar<br>
+                    Background: rgba(220, 38, 38, 0.1)<br>
+                    Border: 1px solid rgba(220, 38, 38, 0.2)<br>
+                    Duration: 3 seconds
+                </div>
+            </div>
+
+            <!-- Error State 2 -->
+            <div class="mockup-card">
+                <h3 class="mockup-title">
+                    <span style="color: #059669;">💾</span>
+                    Success: Saved to Clipboard
+                </h3>
+                <p class="mockup-description">Success message for network error fallback</p>
+                <div class="mockup-visual">
+                    <textarea class="procentive-textarea">Client actively engaged in discussing evidence-based anxiety management strategies.</textarea>
+                    <div class="mindflow-success">✓ Saved to clipboard</div>
+                </div>
+                <div class="specs">
+                    Position: top: 8px, right: 8px within textarea<br>
+                    Background: rgba(5, 150, 105, 0.1)<br>
+                    Border: 1px solid rgba(5, 150, 105, 0.2)<br>
+                    Duration: 3 seconds
+                </div>
+            </div>
+        </div>
+
+        <!-- Positioning Reference -->
+        <div class="flow-diagram">
+            <h2 class="flow-title">Positioning Reference</h2>
+            <div style="font-family: 'Monaco', 'Consolas', monospace; font-size: 14px; line-height: 1.8; color: #374151;">
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #6B46C1;">
+                    <strong>Textarea Coordinate System:</strong><br><br>
+                    ┌─────────────────────────────┐ ← top: 0<br>
+                    │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #6B46C1;">[●]</span>&nbsp;&nbsp;│ ← Indicator: [width-12, -4, 8, 8]<br>
+                    │&nbsp;&nbsp;&nbsp;&nbsp;╔═══════════════════╗&nbsp;&nbsp;&nbsp;&nbsp;│ ← Toolbar: [width-120, -40, 120, 32]<br>
+                    │&nbsp;&nbsp;&nbsp;&nbsp;║ 🎤&nbsp;&nbsp;|&nbsp;&nbsp;✨&nbsp;&nbsp;|&nbsp;&nbsp;⏹ ║&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+                    │&nbsp;&nbsp;&nbsp;&nbsp;╚═══════════════════╝&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+                    │&nbsp;&nbsp;Textarea content area&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+                    │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│<br>
+                    │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #9CA3AF;">[↩ undo]</span>&nbsp;&nbsp;│ ← Undo: [width-45, height-20, 40, 16]<br>
+                    └─────────────────────────────┘ ← bottom: height
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding: 20px; background: rgba(107, 70, 193, 0.1); border-radius: 12px;">
+            <h3 style="color: #6B46C1; margin-bottom: 8px;">🎯 Design Goal</h3>
+            <p style="color: #374151;">A UI so minimal that counselors won't notice it until they need it - replacing complex sidebars and floating buttons with subtle 8px indicators that expand into focused toolbars only when hovered.</p>
+        </div>
+    </div>
+</body>
+</html>
