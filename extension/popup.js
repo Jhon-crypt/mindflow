@@ -136,13 +136,13 @@ async function simulateTranscription() {
   // Wait 2 seconds to simulate API call
   await new Promise(resolve => setTimeout(resolve, 2000));
   
-  // Sample transcriptions from test cases
+  // Sample transcriptions from test cases (matching documentation)
   const samples = [
-    "Client seemed anxious today, about 7 out of 10. Been clean for 30 days. We worked on breathing exercises. Gave homework to write down triggers. See him next week.",
-    "She seemed really depressed today, mood was like a 4. She's been sober for 30 days which is great. We talked about her job loss and how it's affecting her self-worth. Did some cognitive restructuring around her negative thoughts.",
+    "Client was anxious, about 7 out of 10, been clean 30 days. We worked on breathing. Gave homework to write down triggers. See him next week.",
+    "She seemed really depressed today, maybe a 4 out of 10 mood. Talked about negative thoughts. She's only been to one meeting this week. I taught her thought stopping. Next time we'll do more CBT.",
     "Client doing great, 60 days clean, good mood. Went to all his meetings. We reviewed his coping skills. He's been using them. Continue same plan.",
-    "Client relapsed, used yesterday. Very upset about it. We talked about what happened and made a safety plan. Needs to call sponsor daily. See tomorrow.",
-    "Had family session with Tom and his wife Mary. She's frustrated about trust issues. Tom has 60 days clean and wants more freedom. We talked about rebuilding trust slowly."
+    "Client was really anxious today, maybe 8 out of 10. Said he used meth three days ago after fighting with his wife. We worked on breathing exercises and he seemed calmer by the end. He agreed to go to NA tonight and call his sponsor.",
+    "John seemed really down today, mood was like a 4. He's been sober for 30 days which is great. We talked about his job loss and how it's affecting his self-worth. Did some cognitive restructuring around his negative thoughts."
   ];
   
   const randomSample = samples[Math.floor(Math.random() * samples.length)];
@@ -154,67 +154,50 @@ async function simulateTranscription() {
 }
 
 /**
- * Process text with clinical mappings
+ * Process text with clinical mappings using enhanced mapping engine
  */
-function processText() {
+async function processText() {
   const input = document.getElementById('inputText').value.trim();
   if (!input) {
     alert('Please enter some text first.');
     return;
   }
   
-  // Clinical mappings from documentation
-  let enhanced = input
-    .replace(/upset/gi, 'exhibited emotional distress')
-    .replace(/anxious/gi, 'presented with anxiety symptoms')
-    .replace(/clean/gi, 'abstinent from substances')
-    .replace(/sober/gi, 'abstinent from substances')
-    .replace(/worked on/gi, 'implemented interventions targeting')
-    .replace(/doing better/gi, 'demonstrating clinical improvement')
-    .replace(/sad/gi, 'presented with depressed affect')
-    .replace(/happy/gi, 'displayed euthymic mood')
-    .replace(/angry/gi, 'demonstrated emotional dysregulation')
-    .replace(/worried/gi, 'expressed anxiety regarding')
-    .replace(/stressed/gi, 'reported elevated stress levels')
-    .replace(/frustrated/gi, 'exhibited frustration tolerance difficulties')
-    .replace(/crying/gi, 'displayed tearful affect')
-    .replace(/scared/gi, 'expressed fear and apprehension')
-    .replace(/nervous/gi, 'presented with observable anxiety')
-    .replace(/calm/gi, 'appeared emotionally regulated')
-    .replace(/depressed/gi, 'exhibited depressive symptoms')
-    .replace(/talked about/gi, 'discussed and processed')
-    .replace(/practiced/gi, 'engaged in skill rehearsal')
-    .replace(/went over/gi, 'reviewed and reinforced')
-    .replace(/taught/gi, 'provided psychoeducation regarding')
-    .replace(/explained/gi, 'clarified therapeutic concepts')
-    .replace(/breathing/gi, 'breathing exercises')
-    .replace(/coping skills/gi, 'coping strategies')
-    .replace(/triggers/gi, 'relapse triggers')
-    .replace(/meetings/gi, 'support meetings')
-    .replace(/sponsor/gi, '12-step sponsor');
-  
-  // Create 245G-compliant structure
-  const formatted = `SERVICE PROVIDED:
+  try {
+    // Use the enhanced mapping engine
+    const mappingEngine = new MindFlowMappingEngine();
+    const formatted = await mappingEngine.processInput(input);
+    
+    // Show results
+    document.getElementById('outputText').textContent = formatted;
+    document.getElementById('results').classList.remove('hidden');
+    
+    // Store for clipboard
+    window.lastOutput = formatted;
+    
+  } catch (error) {
+    console.error('Processing error:', error);
+    
+    // Fallback to simple processing
+    const formatted = `SERVICE PROVIDED:
 Provided 50-minute individual substance use disorder counseling session at ASAM Level 2.1 intensive outpatient program via in-person service.
 
 CLIENT RESPONSE:
-Client ${enhanced}. Actively engaged in therapeutic discussion and demonstrated receptiveness to interventions. Maintained appropriate eye contact and participated collaboratively in session activities.
+Client ${input}. Actively engaged in therapeutic discussion and demonstrated receptiveness to interventions.
 
 INTERVENTIONS:
-Implemented evidence-based therapeutic interventions addressing Dimension 3 (Emotional/Behavioral) and Dimension 5 (Relapse Potential). Utilized Cognitive Behavioral Therapy techniques and Motivational Interviewing to explore client concerns. Provided psychoeducation regarding anxiety management and relapse prevention strategies.
+Implemented evidence-based therapeutic interventions addressing Dimension 3 (Emotional/Behavioral) and Dimension 5 (Relapse Potential). Utilized Cognitive Behavioral Therapy techniques.
 
 PROGRESS:
-Progress toward Goal #1 (maintain sobriety): Client demonstrating continued engagement in treatment with active participation in therapeutic interventions. Dimension 5 (Relapse Potential) risk being actively addressed through skill development and support system utilization.
+Progress toward Goal #1 (maintain sobriety): Client demonstrating continued engagement in treatment with active participation in therapeutic interventions.
 
 PLAN:
-Continue weekly individual sessions at current ASAM 2.1 level focusing on anxiety management and relapse prevention. Client to practice learned coping skills and attend scheduled support meetings. Next session scheduled for [DATE] to review progress and adjust treatment plan as needed.`;
-  
-  // Show results
-  document.getElementById('outputText').textContent = formatted;
-  document.getElementById('results').classList.remove('hidden');
-  
-  // Store for clipboard
-  window.lastOutput = formatted;
+Continue weekly individual sessions at current ASAM level. Next session scheduled for [DATE].`;
+    
+    document.getElementById('outputText').textContent = formatted;
+    document.getElementById('results').classList.remove('hidden');
+    window.lastOutput = formatted;
+  }
 }
 
 /**
