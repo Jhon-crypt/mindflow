@@ -295,19 +295,42 @@ class MindFlowUI {
    * Simulate transcription (replace with actual API call)
    */
   async simulateTranscription(audioBlob) {
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Return sample transcription for demo - matches the test cases
-    const samples = [
-      "Client seemed anxious today, about 7 out of 10. Been clean for 30 days. We worked on breathing exercises. Gave homework to write down triggers. See him next week.",
-      "She seemed really depressed today, mood was like a 4. She's been sober for 30 days which is great. We talked about her job loss and how it's affecting her self-worth. Did some cognitive restructuring around her negative thoughts.",
-      "Client doing great, 60 days clean, good mood. Went to all his meetings. We reviewed his coping skills. He's been using them. Continue same plan.",
-      "Client relapsed, used yesterday. Very upset about it. We talked about what happened and made a safety plan. Needs to call sponsor daily. See tomorrow.",
-      "Had family session with Tom and his wife Mary. She's frustrated about trust issues. Tom has 60 days clean and wants more freedom. We talked about rebuilding trust slowly."
-    ];
-    
-    return samples[Math.floor(Math.random() * samples.length)];
+    try {
+      // Try to use real Whisper API if available
+      if (typeof WhisperService !== 'undefined') {
+        const whisperService = new WhisperService();
+        
+        if (whisperService.isConfigured()) {
+          console.log('MindFlow: Using OpenAI Whisper API for transcription');
+          const transcription = await whisperService.transcribeClinicalAudio(audioBlob, 'en');
+          
+          if (transcription && transcription.trim().length > 0) {
+            return transcription;
+          }
+        }
+      }
+      
+      // Fallback to demo samples if API not available or fails
+      throw new Error('Whisper API not available or failed');
+      
+    } catch (error) {
+      console.log('MindFlow: Using demo transcription due to:', error.message);
+      
+      // Simulate API delay for demo
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Return sample transcription for demo - matches the test cases
+      const samples = [
+        "Client seemed anxious today, about 7 out of 10. Been clean for 30 days. We worked on breathing exercises. Gave homework to write down triggers. See him next week.",
+        "She seemed really depressed today, mood was like a 4. She's been sober for 30 days which is great. We talked about her job loss and how it's affecting her self-worth. Did some cognitive restructuring around her negative thoughts.",
+        "Client doing great, 60 days clean, good mood. Went to all his meetings. We reviewed his coping skills. He's been using them. Continue same plan.",
+        "Client relapsed, used yesterday. Very upset about it. We talked about what happened and made a safety plan. Needs to call sponsor daily. See tomorrow.",
+        "Had family session with Tom and his wife Mary. She's frustrated about trust issues. Tom has 60 days clean and wants more freedom. We talked about rebuilding trust slowly."
+      ];
+      
+      const sample = samples[Math.floor(Math.random() * samples.length)];
+      return `${sample}\n\n(Demo mode - using sample data)`;
+    }
   }
 
   /**

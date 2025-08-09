@@ -82,75 +82,149 @@ function showSection(sectionName) {
 async function toggleRecording() {
   const recordBtn = document.getElementById('recordBtn');
   const recordingDot = document.getElementById('recordingDot');
-  const recordingTimer = document.getElementById('recordingTimer');
+  const recordingTimerEl = document.getElementById('recordingTimer');
   
   if (!isRecording) {
-    // Start recording
-    isRecording = true;
-    startTime = Date.now();
-    
-    recordBtn.textContent = 'Stop Recording';
-    recordBtn.classList.add('stop');
-    recordingDot.classList.add('active');
-    
-    // Start timer
-    recordingTimer.textContent = '0:00';
-    recordingTimer = setInterval(() => {
-      const elapsed = Math.floor((Date.now() - startTime) / 1000);
-      const minutes = Math.floor(elapsed / 60);
-      const seconds = elapsed % 60;
-      document.getElementById('recordingTimer').textContent = 
-        `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    }, 1000);
-    
-    // Simulate recording for 3 seconds
-    setTimeout(() => {
-      if (isRecording) {
-        toggleRecording();
-      }
-    }, 3000);
+    try {
+      // Request microphone access
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      
+      // Start recording
+      isRecording = true;
+      startTime = Date.now();
+      const audioChunks = [];
+      
+      // Create MediaRecorder
+      const mediaRecorder = new MediaRecorder(stream);
+      
+      mediaRecorder.ondataavailable = (event) => {
+        audioChunks.push(event.data);
+      };
+      
+      mediaRecorder.onstop = async () => {
+        // Create audio blob
+        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+        
+        // Process with Whisper API
+        await processRecording(audioBlob);
+        
+        // Stop all tracks
+        stream.getTracks().forEach(track => track.stop());
+      };
+      
+      // Start recording
+      mediaRecorder.start();
+      
+      // Update UI
+      recordBtn.textContent = 'Stop Recording';
+      recordBtn.classList.add('stop');
+      recordingDot.classList.add('active');
+      
+      // Start timer
+      recordingTimerEl.textContent = '0:00';
+      recordingTimer = setInterval(() => {
+        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+        const minutes = Math.floor(elapsed / 60);
+        const seconds = elapsed % 60;
+        recordingTimerEl.textContent = 
+          `${minutes}:${seconds.toString().padStart(2, '0')}`;
+      }, 1000);
+      
+      // Store mediaRecorder for stopping
+      window.currentMediaRecorder = mediaRecorder;
+      
+    } catch (error) {
+      console.error('MindFlow: Microphone access error:', error);
+      
+      // Update UI to show error state
+      recordBtn.textContent = 'Microphone Denied';
+      recordBtn.style.background = '#DC2626';
+      recordBtn.disabled = true;
+      
+      // Show user-friendly error message
+      const transcriptionText = document.getElementById('transcriptionText');
+      transcriptionText.value = 'Microphone access denied. Please:\n\n1. Click the microphone icon in your browser address bar\n2. Select "Allow" for microphone access\n3. Reload the extension and try again\n\nOr use the Text Enhancement feature instead.';
+      
+      // Reset button after 5 seconds
+      setTimeout(() => {
+        recordBtn.textContent = 'Start Recording';
+        recordBtn.style.background = '';
+        recordBtn.disabled = false;
+        transcriptionText.value = '';
+      }, 5000);
+    }
     
   } else {
     // Stop recording
     isRecording = false;
     clearInterval(recordingTimer);
     
+    // Stop media recorder
+    if (window.currentMediaRecorder && window.currentMediaRecorder.state === 'recording') {
+      window.currentMediaRecorder.stop();
+    }
+    
+    // Update UI
     recordBtn.textContent = 'Start Recording';
     recordBtn.classList.remove('stop');
     recordingDot.classList.remove('active');
-    
-    // Simulate transcription
-    await simulateTranscription();
   }
 }
 
 /**
- * Simulate speech-to-text transcription
+ * Process recorded audio with OpenAI Whisper API
  */
-async function simulateTranscription() {
+async function processRecording(audioBlob) {
   const transcriptionText = document.getElementById('transcriptionText');
   
-  // Show processing
-  transcriptionText.value = 'Processing audio...';
-  
-  // Wait 2 seconds to simulate API call
-  await new Promise(resolve => setTimeout(resolve, 2000));
-  
-  // Sample transcriptions from test cases (matching documentation)
-  const samples = [
-    "Client was anxious, about 7 out of 10, been clean 30 days. We worked on breathing. Gave homework to write down triggers. See him next week.",
-    "She seemed really depressed today, maybe a 4 out of 10 mood. Talked about negative thoughts. She's only been to one meeting this week. I taught her thought stopping. Next time we'll do more CBT.",
-    "Client doing great, 60 days clean, good mood. Went to all his meetings. We reviewed his coping skills. He's been using them. Continue same plan.",
-    "Client was really anxious today, maybe 8 out of 10. Said he used meth three days ago after fighting with his wife. We worked on breathing exercises and he seemed calmer by the end. He agreed to go to NA tonight and call his sponsor.",
-    "John seemed really down today, mood was like a 4. He's been sober for 30 days which is great. We talked about his job loss and how it's affecting his self-worth. Did some cognitive restructuring around his negative thoughts."
-  ];
-  
-  const randomSample = samples[Math.floor(Math.random() * samples.length)];
-  transcriptionText.value = randomSample;
-  
-  // Auto-switch to enhancement
-  document.getElementById('inputText').value = randomSample;
-  showSection('enhance');
+  try {
+    // Show processing
+    transcriptionText.value = 'Transcribing with OpenAI Whisper...';
+    
+    // Initialize Whisper service
+    const whisperService = new WhisperService();
+    
+    // Check if API is configured
+    if (!whisperService.isConfigured()) {
+      throw new Error('OpenAI API key not configured');
+    }
+    
+    // Transcribe audio with clinical context
+    const transcription = await whisperService.transcribeClinicalAudio(audioBlob, 'en');
+    
+    if (!transcription || transcription.trim().length === 0) {
+      throw new Error('No transcription received - please try speaking more clearly');
+    }
+    
+    // Show transcription
+    transcriptionText.value = transcription;
+    
+    // Auto-switch to enhancement
+    document.getElementById('inputText').value = transcription;
+    showSection('enhance');
+    
+  } catch (error) {
+    console.error('MindFlow: Transcription error:', error);
+    
+    // Show error and provide fallback
+    transcriptionText.value = `Transcription failed: ${error.message}`;
+    
+    // Provide fallback with sample data after 3 seconds
+    setTimeout(() => {
+      const samples = [
+        "Client was anxious, about 7 out of 10, been clean 30 days. We worked on breathing. Gave homework to write down triggers. See him next week.",
+        "She seemed really depressed today, maybe a 4 out of 10 mood. Talked about negative thoughts. She's only been to one meeting this week. I taught her thought stopping. Next time we'll do more CBT.",
+        "Client doing great, 60 days clean, good mood. Went to all his meetings. We reviewed his coping skills. He's been using them. Continue same plan."
+      ];
+      
+      const fallbackSample = samples[Math.floor(Math.random() * samples.length)];
+      transcriptionText.value = `${fallbackSample}\n\n(Demo mode - using sample data due to transcription error)`;
+      
+      // Auto-switch to enhancement with fallback
+      document.getElementById('inputText').value = fallbackSample;
+      showSection('enhance');
+    }, 3000);
+  }
 }
 
 /**
@@ -273,3 +347,4 @@ function applyTemplate(templateType) {
     showSection('enhance');
   }
 }
+
