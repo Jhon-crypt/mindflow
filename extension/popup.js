@@ -139,6 +139,7 @@ function showSection(sectionName) {
  */
 async function toggleLauncherRecording() {
   const launcherDot = document.getElementById('launcherDot');
+  const launcherStatus = document.getElementById('launcherStatus');
   
   if (!isRecording) {
     try {
@@ -170,6 +171,8 @@ async function toggleLauncherRecording() {
         // Reset launcher dot state
         launcherDot.classList.remove('recording');
         launcherDot.title = 'Click to record';
+        launcherStatus.textContent = 'Ready to record';
+        launcherStatus.classList.remove('recording', 'processing', 'error');
       };
       
       // Start recording
@@ -178,6 +181,8 @@ async function toggleLauncherRecording() {
       // Update launcher dot to recording state
       launcherDot.classList.add('recording');
       launcherDot.title = 'Recording... Click to stop';
+      launcherStatus.textContent = 'Recording...';
+      launcherStatus.classList.add('recording');
       
       // Store mediaRecorder for stopping
       window.currentLauncherRecorder = mediaRecorder;
@@ -188,10 +193,14 @@ async function toggleLauncherRecording() {
       // Show error state briefly
       launcherDot.style.background = '#DC2626';
       launcherDot.title = 'Microphone access denied';
+      launcherStatus.textContent = 'Microphone access denied';
+      launcherStatus.classList.add('error');
       
       setTimeout(() => {
         launcherDot.style.background = '';
         launcherDot.title = 'Click to record';
+        launcherStatus.textContent = 'Ready to record';
+        launcherStatus.classList.remove('error');
       }, 3000);
     }
     
@@ -207,6 +216,8 @@ async function toggleLauncherRecording() {
     // Reset launcher dot state
     launcherDot.classList.remove('recording');
     launcherDot.title = 'Click to record';
+    launcherStatus.textContent = 'Stopping...';
+    launcherStatus.classList.remove('recording');
   }
 }
 
@@ -215,11 +226,14 @@ async function toggleLauncherRecording() {
  */
 async function processLauncherRecording(audioBlob) {
   const launcherDot = document.getElementById('launcherDot');
+  const launcherStatus = document.getElementById('launcherStatus');
   
   try {
     // Show processing state
     launcherDot.style.background = '#F59E0B';
     launcherDot.title = 'Processing...';
+    launcherStatus.textContent = 'Processing...';
+    launcherStatus.classList.add('processing');
     
     // Initialize Whisper service
     const whisperService = new WhisperService();
@@ -252,10 +266,15 @@ async function processLauncherRecording(audioBlob) {
     // Show error state
     launcherDot.style.background = '#DC2626';
     launcherDot.title = `Error: ${error.message}`;
+    launcherStatus.textContent = `Error: ${error.message}`;
+    launcherStatus.classList.remove('processing');
+    launcherStatus.classList.add('error');
     
     setTimeout(() => {
       launcherDot.style.background = '';
       launcherDot.title = 'Click to record';
+      launcherStatus.textContent = 'Ready to record';
+      launcherStatus.classList.remove('error');
     }, 3000);
   }
 }

@@ -261,6 +261,40 @@
       50% { opacity: 0.7; }
     }
 
+    /* Status text below the dot */
+    .launcher-status {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      font-weight: 500;
+      color: #6B7280;
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      transition: color 200ms ease;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .launcher-status.recording {
+      color: #22C55E;
+      animation: pulse-text 1.5s ease-in-out infinite;
+    }
+
+    .launcher-status.processing {
+      color: #F59E0B;
+    }
+
+    .launcher-status.error {
+      color: #DC2626;
+    }
+
+    @keyframes pulse-text {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
     /* Hide expanded grid (not used anymore) */
     .quick-actions .expanded-grid {
       display: none;
@@ -549,6 +583,7 @@
   <!-- Full-Screen Launcher -->
   <div class="quick-actions" id="quickActions">
               <div class="launcher-dot" id="launcherDot" title="Click to record"></div>
+    <div class="launcher-status" id="launcherStatus">Ready to record</div>
     <div class="action-grid expanded-grid">
       <button class="action-btn" id="voiceBtn">
         <div class="action-icon">🎤</div>
