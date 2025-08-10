@@ -53,14 +53,13 @@ function bindEvents() {
     copyLastOutput();
   });
 
-  // Launcher dot click goes directly to voice recording
+  // Launcher dot click starts/stops recording directly
   const quickActions = document.getElementById('quickActions');
   const launcherDot = document.getElementById('launcherDot');
   if (quickActions && launcherDot) {
     launcherDot.addEventListener('click', (e) => {
       e.stopPropagation();
-      showMainContent();
-      showSection('voice');
+      toggleLauncherRecording();
     });
   }
   
@@ -132,6 +131,132 @@ function showSection(sectionName) {
   const targetSection = document.getElementById(sectionName + 'Section');
   if (targetSection) {
     targetSection.classList.remove('hidden');
+  }
+}
+
+/**
+ * Toggle recording from launcher dot
+ */
+async function toggleLauncherRecording() {
+  const launcherDot = document.getElementById('launcherDot');
+  
+  if (!isRecording) {
+    try {
+      // Request microphone access
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      
+      // Start recording
+      isRecording = true;
+      startTime = Date.now();
+      const audioChunks = [];
+      
+      // Create MediaRecorder
+      const mediaRecorder = new MediaRecorder(stream);
+      
+      mediaRecorder.ondataavailable = (event) => {
+        audioChunks.push(event.data);
+      };
+      
+      mediaRecorder.onstop = async () => {
+        // Create audio blob
+        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+        
+        // Process with Whisper API
+        await processLauncherRecording(audioBlob);
+        
+        // Stop all tracks
+        stream.getTracks().forEach(track => track.stop());
+        
+        // Reset launcher dot state
+        launcherDot.classList.remove('recording');
+        launcherDot.title = 'Click to record';
+      };
+      
+      // Start recording
+      mediaRecorder.start();
+      
+      // Update launcher dot to recording state
+      launcherDot.classList.add('recording');
+      launcherDot.title = 'Recording... Click to stop';
+      
+      // Store mediaRecorder for stopping
+      window.currentLauncherRecorder = mediaRecorder;
+      
+    } catch (error) {
+      console.error('MindFlow: Microphone access error:', error);
+      
+      // Show error state briefly
+      launcherDot.style.background = '#DC2626';
+      launcherDot.title = 'Microphone access denied';
+      
+      setTimeout(() => {
+        launcherDot.style.background = '';
+        launcherDot.title = 'Click to record';
+      }, 3000);
+    }
+    
+  } else {
+    // Stop recording
+    isRecording = false;
+    
+    // Stop media recorder
+    if (window.currentLauncherRecorder && window.currentLauncherRecorder.state === 'recording') {
+      window.currentLauncherRecorder.stop();
+    }
+    
+    // Reset launcher dot state
+    launcherDot.classList.remove('recording');
+    launcherDot.title = 'Click to record';
+  }
+}
+
+/**
+ * Process recorded audio from launcher
+ */
+async function processLauncherRecording(audioBlob) {
+  const launcherDot = document.getElementById('launcherDot');
+  
+  try {
+    // Show processing state
+    launcherDot.style.background = '#F59E0B';
+    launcherDot.title = 'Processing...';
+    
+    // Initialize Whisper service
+    const whisperService = new WhisperService();
+    
+    // Check if API is configured
+    if (!whisperService.isConfigured()) {
+      throw new Error('OpenAI API key not configured');
+    }
+    
+    // Transcribe audio with clinical context
+    const transcription = await whisperService.transcribeClinicalAudio(audioBlob, 'en');
+    
+    if (!transcription || transcription.trim().length === 0) {
+      throw new Error('No transcription received - please try speaking more clearly');
+    }
+    
+    // Switch to main content with transcription
+    showMainContent();
+    document.getElementById('inputText').value = transcription;
+    showSection('enhance');
+    
+    // Auto-process the text
+    setTimeout(() => {
+      processText();
+    }, 500);
+    
+  } catch (error) {
+    console.error('MindFlow: Transcription error:', error);
+    
+    // Show error state
+    launcherDot.style.background = '#DC2626';
+    launcherDot.title = `Error: ${error.message}`;
+    
+    setTimeout(() => {
+      launcherDot.style.background = '';
+      launcherDot.title = 'Click to record';
+    }, 3000);
   }
 }
 

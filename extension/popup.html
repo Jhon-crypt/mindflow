@@ -227,6 +227,40 @@
       box-shadow: 0 12px 32px rgba(232, 121, 249, 0.4);
     }
 
+    /* Recording state - green color */
+    .launcher-dot.recording {
+      background: #22C55E;
+      box-shadow: 0 12px 32px rgba(34, 197, 94, 0.4);
+      animation: breathe-recording 1.5s ease-in-out infinite;
+    }
+
+    .launcher-dot.recording::before {
+      content: '🎤';
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      opacity: 1;
+      animation: pulse-recording 1.5s ease-in-out infinite;
+    }
+
+    @keyframes breathe-recording {
+      0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 12px 32px rgba(34, 197, 94, 0.4);
+      }
+      50% { 
+        transform: scale(1.08);
+        box-shadow: 0 16px 40px rgba(34, 197, 94, 0.6);
+      }
+    }
+
+    @keyframes pulse-recording {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
     /* Hide expanded grid (not used anymore) */
     .quick-actions .expanded-grid {
       display: none;
@@ -514,7 +548,7 @@
 
   <!-- Full-Screen Launcher -->
   <div class="quick-actions" id="quickActions">
-    <div class="launcher-dot" id="launcherDot" title="Open actions"></div>
+              <div class="launcher-dot" id="launcherDot" title="Click to record"></div>
     <div class="action-grid expanded-grid">
       <button class="action-btn" id="voiceBtn">
         <div class="action-icon">🎤</div>
