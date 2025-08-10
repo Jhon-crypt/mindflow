@@ -35,11 +35,34 @@ document.addEventListener('DOMContentLoaded', () => {
  * Bind all event handlers
  */
 function bindEvents() {
-  // Quick action buttons
-  document.getElementById('voiceBtn').addEventListener('click', () => showSection('voice'));
-  document.getElementById('enhanceBtn').addEventListener('click', () => showSection('enhance'));
-  document.getElementById('templatesBtn').addEventListener('click', () => showSection('templates'));
-  document.getElementById('clipboardBtn').addEventListener('click', copyLastOutput);
+  // Quick action buttons - these now transition from launcher to main content
+  document.getElementById('voiceBtn').addEventListener('click', () => {
+    showMainContent();
+    showSection('voice');
+  });
+  document.getElementById('enhanceBtn').addEventListener('click', () => {
+    showMainContent();
+    showSection('enhance');
+  });
+  document.getElementById('templatesBtn').addEventListener('click', () => {
+    showMainContent();
+    showSection('templates');
+  });
+  document.getElementById('clipboardBtn').addEventListener('click', () => {
+    showMainContent();
+    copyLastOutput();
+  });
+
+  // Launcher dot click goes directly to voice recording
+  const quickActions = document.getElementById('quickActions');
+  const launcherDot = document.getElementById('launcherDot');
+  if (quickActions && launcherDot) {
+    launcherDot.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showMainContent();
+      showSection('voice');
+    });
+  }
   
   // Voice recording
   document.getElementById('recordBtn').addEventListener('click', toggleRecording);
@@ -55,6 +78,42 @@ function bindEvents() {
       applyTemplate(templateType);
     });
   });
+
+  // Back button to return to launcher
+  const backBtn = document.getElementById('backBtn');
+  if (backBtn) {
+    backBtn.addEventListener('click', showLauncher);
+  }
+}
+
+/**
+ * Show main content and hide launcher
+ */
+function showMainContent() {
+  const quickActions = document.getElementById('quickActions');
+  const mainContent = document.getElementById('mainContent');
+  const header = document.querySelector('.header');
+  
+  if (quickActions && mainContent && header) {
+    quickActions.style.display = 'none';
+    mainContent.style.display = 'block';
+    header.style.display = 'block';
+  }
+}
+
+/**
+ * Show launcher and hide main content
+ */
+function showLauncher() {
+  const quickActions = document.getElementById('quickActions');
+  const mainContent = document.getElementById('mainContent');
+  const header = document.querySelector('.header');
+  
+  if (quickActions && mainContent && header) {
+    quickActions.style.display = 'flex';
+    mainContent.style.display = 'none';
+    header.style.display = 'none';
+  }
 }
 
 /**

@@ -16,7 +16,7 @@ class WhisperService {
    */
   async initializeApiKey() {
     // Use hardcoded API key for seamless operation
-    this.apiKey = '';
+    this.apiKey = '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';
     console.log('MindFlow: OpenAI API key configured');
   }
 
