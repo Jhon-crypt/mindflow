@@ -83,6 +83,57 @@ function bindEvents() {
   if (backBtn) {
     backBtn.addEventListener('click', showLauncher);
   }
+
+  // Options panel event handlers
+  bindOptionsPanel();
+}
+
+/**
+ * Bind options panel event handlers
+ */
+function bindOptionsPanel() {
+  const enhanceOption = document.getElementById('enhanceOption');
+  const templatesOption = document.getElementById('templatesOption');
+  const copyOption = document.getElementById('copyOption');
+  const recordAgainOption = document.getElementById('recordAgainOption');
+  const closeOptions = document.getElementById('closeOptions');
+
+  if (enhanceOption) {
+    enhanceOption.addEventListener('click', () => {
+      hideOptionsPanel();
+      showMainContent();
+      showSection('enhance');
+    });
+  }
+
+  if (templatesOption) {
+    templatesOption.addEventListener('click', () => {
+      hideOptionsPanel();
+      showMainContent();
+      showSection('templates');
+    });
+  }
+
+  if (copyOption) {
+    copyOption.addEventListener('click', () => {
+      hideOptionsPanel();
+      copyLastOutput();
+    });
+  }
+
+  if (recordAgainOption) {
+    recordAgainOption.addEventListener('click', () => {
+      hideOptionsPanel();
+      resetLauncherState();
+    });
+  }
+
+  if (closeOptions) {
+    closeOptions.addEventListener('click', () => {
+      hideOptionsPanel();
+      resetLauncherState();
+    });
+  }
 }
 
 /**
@@ -112,6 +163,46 @@ function showLauncher() {
     quickActions.style.display = 'flex';
     mainContent.style.display = 'none';
     header.style.display = 'none';
+  }
+  
+  // Hide options panel and reset state
+  hideOptionsPanel();
+  resetLauncherState();
+}
+
+/**
+ * Show options panel with slide up animation
+ */
+function showOptionsPanel() {
+  const optionsPanel = document.getElementById('optionsPanel');
+  if (optionsPanel) {
+    optionsPanel.classList.add('show');
+  }
+}
+
+/**
+ * Hide options panel
+ */
+function hideOptionsPanel() {
+  const optionsPanel = document.getElementById('optionsPanel');
+  if (optionsPanel) {
+    optionsPanel.classList.remove('show');
+  }
+}
+
+/**
+ * Reset launcher to default state
+ */
+function resetLauncherState() {
+  const launcherDot = document.getElementById('launcherDot');
+  const launcherStatus = document.getElementById('launcherStatus');
+  
+  if (launcherDot && launcherStatus) {
+    launcherDot.style.background = '';
+    launcherDot.title = 'Click to record';
+    launcherDot.classList.remove('recording');
+    launcherStatus.textContent = 'Ready to record';
+    launcherStatus.classList.remove('recording', 'processing', 'error');
   }
 }
 
@@ -250,14 +341,14 @@ async function processLauncherRecording(audioBlob) {
       throw new Error('No transcription received - please try speaking more clearly');
     }
     
-    // Switch to main content with transcription
-    showMainContent();
+    // Store transcription and show options
+    window.lastTranscription = transcription;
     document.getElementById('inputText').value = transcription;
-    showSection('enhance');
     
-    // Auto-process the text
+    // Show options panel with slide up animation
+    launcherStatus.textContent = 'Recording complete!';
     setTimeout(() => {
-      processText();
+      showOptionsPanel();
     }, 500);
     
   } catch (error) {

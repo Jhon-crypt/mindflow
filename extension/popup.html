@@ -295,6 +295,91 @@
       50% { opacity: 0.7; }
     }
 
+    /* Options panel that slides up after recording */
+    .options-panel {
+      position: absolute;
+      bottom: -300px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 280px;
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+      transition: bottom 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      z-index: 1001;
+    }
+
+    .options-panel.show {
+      bottom: 60px;
+    }
+
+    .options-panel h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .option-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 12px;
+      background: #F9FAFB;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 150ms ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .option-btn:hover {
+      background: #F3F4F6;
+      border-color: #6B46C1;
+      transform: translateY(-1px);
+    }
+
+    .option-icon {
+      font-size: 20px;
+      margin-bottom: 8px;
+      opacity: 0.8;
+    }
+
+    .option-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #374151;
+      text-align: center;
+    }
+
+    .close-options {
+      width: 100%;
+      background: #6B46C1;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 150ms;
+    }
+
+    .close-options:hover {
+      background: #553C9A;
+    }
+
     /* Hide expanded grid (not used anymore) */
     .quick-actions .expanded-grid {
       display: none;
@@ -584,6 +669,30 @@
   <div class="quick-actions" id="quickActions">
               <div class="launcher-dot" id="launcherDot" title="Click to record"></div>
     <div class="launcher-status" id="launcherStatus">Ready to record</div>
+    
+    <!-- Options Panel (slides up after recording) -->
+    <div class="options-panel" id="optionsPanel">
+      <h3>What would you like to do?</h3>
+      <div class="options-grid">
+        <button class="option-btn" id="enhanceOption">
+          <div class="option-icon">✨</div>
+          <div class="option-label">Enhance Text</div>
+        </button>
+        <button class="option-btn" id="templatesOption">
+          <div class="option-icon">📋</div>
+          <div class="option-label">Templates</div>
+        </button>
+        <button class="option-btn" id="copyOption">
+          <div class="option-icon">📄</div>
+          <div class="option-label">Copy Output</div>
+        </button>
+        <button class="option-btn" id="recordAgainOption">
+          <div class="option-icon">🎤</div>
+          <div class="option-label">Record Again</div>
+        </button>
+      </div>
+      <button class="close-options" id="closeOptions">Close</button>
+    </div>
     <div class="action-grid expanded-grid">
       <button class="action-btn" id="voiceBtn">
         <div class="action-icon">🎤</div>
