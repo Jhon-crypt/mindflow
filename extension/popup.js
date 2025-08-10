@@ -95,7 +95,6 @@ function bindOptionsPanel() {
   const enhanceOption = document.getElementById('enhanceOption');
   const templatesOption = document.getElementById('templatesOption');
   const copyOption = document.getElementById('copyOption');
-  const recordAgainOption = document.getElementById('recordAgainOption');
   const closeOptions = document.getElementById('closeOptions');
 
   if (enhanceOption) {
@@ -117,14 +116,23 @@ function bindOptionsPanel() {
   if (copyOption) {
     copyOption.addEventListener('click', () => {
       hideOptionsPanel();
-      copyLastOutput();
-    });
-  }
-
-  if (recordAgainOption) {
-    recordAgainOption.addEventListener('click', () => {
-      hideOptionsPanel();
-      resetLauncherState();
+      // Copy the transcribed text
+      if (window.lastTranscription) {
+        navigator.clipboard.writeText(window.lastTranscription).then(() => {
+          // Show brief success feedback then reset
+          const launcherStatus = document.getElementById('launcherStatus');
+          if (launcherStatus) {
+            launcherStatus.textContent = 'Copied to clipboard!';
+            setTimeout(() => {
+              resetLauncherState();
+            }, 1500);
+          }
+        }).catch(() => {
+          resetLauncherState();
+        });
+      } else {
+        resetLauncherState();
+      }
     });
   }
 
@@ -175,7 +183,9 @@ function showLauncher() {
  */
 function showOptionsPanel() {
   const optionsPanel = document.getElementById('optionsPanel');
-  if (optionsPanel) {
+  const quickActions = document.getElementById('quickActions');
+  if (optionsPanel && quickActions) {
+    quickActions.classList.add('options-active');
     optionsPanel.classList.add('show');
   }
 }
@@ -185,7 +195,9 @@ function showOptionsPanel() {
  */
 function hideOptionsPanel() {
   const optionsPanel = document.getElementById('optionsPanel');
-  if (optionsPanel) {
+  const quickActions = document.getElementById('quickActions');
+  if (optionsPanel && quickActions) {
+    quickActions.classList.remove('options-active');
     optionsPanel.classList.remove('show');
   }
 }
