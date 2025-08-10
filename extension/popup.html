@@ -143,18 +143,14 @@
     }
 
     .launcher-dot::before {
-      content: '🎤';
+      content: '';
       width: 24px;
       height: 24px;
       background: white;
       border-radius: 50%;
-      opacity: 0;
+      opacity: 0.9;
       animation: breathe-inner 3s ease-in-out infinite;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      transition: opacity 200ms ease;
+      transition: all 200ms ease;
     }
 
     .launcher-dot::after {
@@ -217,6 +213,12 @@
 
     /* Show microphone icon and change color on dot hover only */
     .launcher-dot:hover::before {
+      content: '🎤';
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
       opacity: 1;
     }
 
